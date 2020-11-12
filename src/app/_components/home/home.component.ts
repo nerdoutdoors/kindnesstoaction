@@ -6,9 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  
-  public title: string = 'Angular 7';
-
   constructor() { }
 
   ngOnInit() {
@@ -17,5 +14,6 @@ export class HomeComponent implements OnInit {
   openOptions() {
   	window.document.getElementById('dashboard-button').click();
   }
+
 
 }

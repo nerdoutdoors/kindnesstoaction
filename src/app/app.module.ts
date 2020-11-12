@@ -25,18 +25,21 @@ import { AppComponent } from './_components/app.component';
 import { LoginComponent, RegisterComponent, ForgotPasswordComponent, ResetPasswordComponent } from './_components/auth/index';
 import { NavigationComponent } from './_components/navigation/navigation.component';
 import { HomeComponent } from './_components/home/home.component';
+import { HeroComponent } from "./_components/hero/hero.component";
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    ForgotPasswordComponent,
-    ResetPasswordComponent,
-    NavigationComponent,
-    HomeComponent
-  ],
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        RegisterComponent,
+        ForgotPasswordComponent,
+        ResetPasswordComponent,
+        NavigationComponent,
+        HomeComponent,
+        HeroComponent,
+        HeroComponent
+    ],
   imports: [
     BrowserModule,
     FormsModule,
