@@ -8,7 +8,6 @@ import { LayoutModule } from '@angular/cdk/layout';
 import 'hammerjs';
 
 // all app modules
-import { MaterialModule, CrudModule } from './_modules/index';
 import { routing } from './app-routing.module';
 
 // all guards
@@ -31,6 +30,7 @@ import { PicturesComponent } from './_components/pictures/pictures.component';
 import { SupportComponent } from './_components/support/support.component';
 import { SocialComponent } from './_components/social/social.component';
 import { AmbassadorComponent } from './_components/ambassador/ambassador.component';
+import {NgbCarouselModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 @NgModule({
@@ -59,8 +59,7 @@ import { AmbassadorComponent } from './_components/ambassador/ambassador.compone
     BrowserAnimationsModule,
     NoopAnimationsModule,
     LayoutModule,
-    MaterialModule,
-    CrudModule
+    NgbCarouselModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

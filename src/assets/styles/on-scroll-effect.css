@@ -1,10 +1,8 @@
 .cbp-so-scroller {
-  margin-top: 50px;
   overflow: hidden;
 }
 
 .cbp-so-section {
-  margin-bottom: 15em;
   position: relative;
 }
 
@@ -19,26 +17,13 @@
   clear: both;
 }
 
-/* Text styling */
-.cbp-so-section h2 {
-  font-size: 5em;
-  font-weight: 300;
-  line-height: 1;
-}
-
-.cbp-so-section p {
-  font-size: 2em;
-  font-weight: 300;
-}
-
 /* Sides */
 .cbp-so-side {
   width: 50%;
   float: left;
   margin: 0;
-  padding: 3em 4%;
+  padding: 5em 2%;
   overflow: hidden;
-  min-height: 12em;
 }
 
 /* Clear floats of children */

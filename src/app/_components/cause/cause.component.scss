@@ -1,7 +1,12 @@
 .cause {
-  height: 400px;
 
   article {
-    max-width: 300px;
+  }
+
+  figure {
+    img {
+      height: 400px;
+      width: 500px;
+    }
   }
 }

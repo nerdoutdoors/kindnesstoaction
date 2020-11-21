@@ -1,13 +1,5 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
-@import '~@angular/material/_theming';
-
-@include mat-core();
-$primary: mat-palette($mat-grey, 900);
-$accent: mat-palette($mat-indigo);
-$warn: mat-palette($mat-red);
-$theme: mat-light-theme($primary, $accent, $warn);
-@include angular-material-theme($theme);
 
 @font-face {
   font-family: myFirstFont;
@@ -47,14 +39,6 @@ h3 {
   letter-spacing: 0.005em;
 }
 
-pre {
-  margin: 0;
-}
-
-code {
-  white-space: pre;
-}
-
 h3, h4, h5, p {
   margin: 0 0 16px;
 }
@@ -65,10 +49,24 @@ h4 {
   font-size: 18px;
 }
 
-p {
-  line-height: 1.5;
-}
+section {
+  padding: 0 7%;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
 
+  h2 {
+    font-size: 3rem;
+  }
+
+  p {
+    font-weight: 300;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin-top: 25px;
+    opacity: 0.8;
+  }
+}
 
 .inline {
   display: inline-block;

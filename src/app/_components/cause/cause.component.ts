@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cause.component.scss']
 })
 export class CauseComponent implements OnInit {
-
+  logoPathLg: string = '../../assets/images/kindness-org-logo-lg.png';
   constructor() { }
 
   ngOnInit() {
