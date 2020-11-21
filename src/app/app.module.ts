@@ -26,6 +26,11 @@ import { LoginComponent, RegisterComponent, ForgotPasswordComponent, ResetPasswo
 import { NavigationComponent } from './_components/navigation/navigation.component';
 import { HomeComponent } from './_components/home/home.component';
 import { HeroComponent } from "./_components/hero/hero.component";
+import { CauseComponent } from './_components/cause/cause.component';
+import { PicturesComponent } from './_components/pictures/pictures.component';
+import { SupportComponent } from './_components/support/support.component';
+import { SocialComponent } from './_components/social/social.component';
+import { AmbassadorComponent } from './_components/ambassador/ambassador.component';
 
 
 @NgModule({
@@ -38,7 +43,12 @@ import { HeroComponent } from "./_components/hero/hero.component";
         NavigationComponent,
         HomeComponent,
         HeroComponent,
-        HeroComponent
+        HeroComponent,
+        CauseComponent,
+        PicturesComponent,
+        SupportComponent,
+        SocialComponent,
+        AmbassadorComponent
     ],
   imports: [
     BrowserModule,
