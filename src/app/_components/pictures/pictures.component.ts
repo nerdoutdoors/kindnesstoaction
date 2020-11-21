@@ -8,9 +8,9 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class PicturesComponent implements OnInit {
   image1: string = '../../assets/images/elijah-laughing.jpg';
-  image2: string = '../../assets/images/elijah-laughing.jpg';
-  image3: string = '../../assets/images/elijah-laughing.jpg';
-  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  image2: string = '../../assets/images/lij-focused-on-top.jpg';
+  image3: string = '../../assets/images/lij-ice-cream.jpg';
+  images = [this.image1, this.image2, this.image3];
 
   constructor(config: NgbCarouselConfig) {
     config.interval = 3000;

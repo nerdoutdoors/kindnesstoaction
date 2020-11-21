@@ -15,22 +15,10 @@ html, body {
   padding:0;
   line-height: normal;
   font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
-
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #eee;
 }
 
 div {
   box-sizing: border-box;
-}
-
-mat-sidenav-container {
-  height: 100%;
 }
 
 h3 {
