@@ -10,8 +10,11 @@
   .elijah {
     z-index: 40;
     box-shadow: 0 31px 40px rgba(0,0,0,.9);
-    max-width: 545px;
     align-self: flex-start;
+
+    img {
+      height: 100vh;
+    }
   }
 
   .quote {
@@ -33,7 +36,7 @@
         opacity: 0;
         font-size: 2rem;
         margin-top: 30px;
-        animation: 5s ease 0s normal forwards 1 fadein;
+        animation: 3s ease 2s normal forwards 1 fadein;
       }
     }
   }
