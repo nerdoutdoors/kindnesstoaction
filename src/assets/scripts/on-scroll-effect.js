@@ -69,7 +69,6 @@
   }
 
   function cbpScroller( el, options ) {
-    console.log('here!', el, options)
     this.el = el;
     this.options = extend( this.defaults, options );
     this._init();

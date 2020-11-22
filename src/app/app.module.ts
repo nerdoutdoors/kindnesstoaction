@@ -17,7 +17,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 
 // all services
-import { AuthenticationService, DummyService, FileService } from './_services/index';
+import { AuthenticationService, FileService } from './_services/index';
 
 // all components
 import { AppComponent } from './_components/app.component';
@@ -31,6 +31,7 @@ import { SupportComponent } from './_components/support/support.component';
 import { SocialComponent } from './_components/social/social.component';
 import { AmbassadorComponent } from './_components/ambassador/ambassador.component';
 import {NgbCarouselModule} from "@ng-bootstrap/ng-bootstrap";
+import { BlogComponent } from './_components/blog/blog.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import {NgbCarouselModule} from "@ng-bootstrap/ng-bootstrap";
         PicturesComponent,
         SupportComponent,
         SocialComponent,
-        AmbassadorComponent
+        AmbassadorComponent,
+        BlogComponent
     ],
   imports: [
     BrowserModule,
@@ -66,7 +68,6 @@ import {NgbCarouselModule} from "@ng-bootstrap/ng-bootstrap";
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     AuthGuard,
     AuthenticationService,
-    DummyService,
     FileService
   ],
   bootstrap: [AppComponent]

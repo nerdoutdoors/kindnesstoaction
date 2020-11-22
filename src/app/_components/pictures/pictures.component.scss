@@ -3,3 +3,25 @@
   //justify-content: center;
   background-color: #000;
 }
+
+// Ng-bootstrap override styles
+::ng-deep .carousel {
+  width: 100%;
+  outline: none;
+
+  .carousel-inner {
+    .carousel-item {
+      transition: transform 0.8s ease-in-out;
+
+      .picsum-img-wrapper {
+        height: 600px;
+        display: flex;
+        justify-content: center;
+
+        img {
+          height: inherit;
+        }
+      }
+    }
+  }
+}
