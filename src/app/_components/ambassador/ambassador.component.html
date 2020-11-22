@@ -1,3 +1,48 @@
-<p>
-  ambassador works!
-</p>
+<section class="ambassador cbp-so-section">
+  <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && sendEmail()"
+        class="container d-flex cbp-so-side-left">
+    <mat-card class="d-flex flex-column">
+      <mat-card-title>
+        <span>Become an Ambassador?</span>
+      </mat-card-title>
+      <mat-card-content class="d-flex flex-column">
+        <div class="d-flex flex-row">
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="First">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Last">
+          </mat-form-field>
+        </div>
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Phone Number</mat-label>
+          <input matInput placeholder="">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Tell us what you're thinking</mat-label>
+          <textarea matInput placeholder=""></textarea>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button *ngIf="!waiting"
+                mat-raised-button
+                type="submit" color="primary">
+          <span>Confirm</span>
+        </button>
+        <button *ngIf="waiting"
+                mat-raised-button disabled
+                type="submit" color="primary">
+      <span>
+        <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+      </span>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</section>
