@@ -8,7 +8,9 @@ import { MatFormFieldControl } from "@angular/material/form-field";
   providers: [{provide: MatFormFieldControl, useExisting: ''}],
 })
 export class AmbassadorComponent implements OnInit {
-
+  sendEmail = () => {};
+  waiting: boolean = false;
+  
   constructor() { }
 
   ngOnInit() {
