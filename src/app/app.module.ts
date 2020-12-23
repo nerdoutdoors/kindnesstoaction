@@ -33,12 +33,11 @@ import { AmbassadorComponent } from './_components/ambassador/ambassador.compone
 import {NgbCarouselModule} from "@ng-bootstrap/ng-bootstrap";
 import { BlogComponent } from './_components/blog/blog.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatCard, MatCardModule} from "@angular/material/card";
+import { MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
-
 
 @NgModule({
     declarations: [
@@ -58,22 +57,22 @@ import {MatSelectModule} from "@angular/material/select";
         AmbassadorComponent,
         BlogComponent
     ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    routing,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    NoopAnimationsModule,
-    LayoutModule,
-    NgbCarouselModule,
-    MatFormFieldModule,
-    MatCardModule,
-    MatIconModule,
-    MatInputModule,MatOptionModule, MatSelectModule, MatIconModule,
-    FormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        routing,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        NoopAnimationsModule,
+        LayoutModule,
+        NgbCarouselModule,
+        MatFormFieldModule,
+        MatCardModule,
+        MatIconModule,
+        MatInputModule, MatOptionModule, MatSelectModule, MatIconModule,
+        FormsModule,
+    ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
