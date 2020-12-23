@@ -29,7 +29,7 @@ import { CauseComponent } from './_components/cause/cause.component';
 import { PicturesComponent } from './_components/pictures/pictures.component';
 import { SupportComponent } from './_components/support/support.component';
 import { SocialComponent } from './_components/social/social.component';
-import { AmbassadorComponent } from './_components/ambassador/ambassador.component';
+import { AmbassadorAndCoinComponent } from './_components/ambassador-and-coin/ambassador-and-coin.component';
 import {NgbCarouselModule} from "@ng-bootstrap/ng-bootstrap";
 import { BlogComponent } from './_components/blog/blog.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -38,6 +38,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
     declarations: [
@@ -54,25 +55,25 @@ import {MatSelectModule} from "@angular/material/select";
         PicturesComponent,
         SupportComponent,
         SocialComponent,
-        AmbassadorComponent,
+        AmbassadorAndCoinComponent,
         BlogComponent
     ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        ReactiveFormsModule,
-        routing,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        NoopAnimationsModule,
-        LayoutModule,
-        NgbCarouselModule,
-        MatFormFieldModule,
-        MatCardModule,
-        MatIconModule,
-        MatInputModule, MatOptionModule, MatSelectModule, MatIconModule,
-        FormsModule,
-    ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    routing,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
+    LayoutModule,
+    NgbCarouselModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatIconModule,
+    MatInputModule, MatOptionModule, MatSelectModule, MatIconModule,
+    FormsModule, MatTabsModule,
+  ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

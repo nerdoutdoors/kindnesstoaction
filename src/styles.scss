@@ -1,15 +1,7 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
-@font-face {
-  font-family: myFirstFont;
-  src: url(./assets/font/avenir_light.otf);
-}
-
-* {
-  font-family: myFirstFont;
-}
+@import "globals";
 
 html, body {
   margin: 0;
@@ -40,7 +32,7 @@ section {
 
   h2 {
     font-size: 3rem;
-    color: #82be3f;
+    color: $kindnessGreen;
   }
 
   p {

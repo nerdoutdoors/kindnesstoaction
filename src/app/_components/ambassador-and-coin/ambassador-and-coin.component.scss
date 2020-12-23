@@ -1,0 +1,55 @@
+@import "../../../globals";
+
+.ambassador-and-coin-section {
+  background: center / cover no-repeat url(../../../assets/images/google-map-example.png);
+  height: 600px;
+  padding: 0;
+
+  .ambassador-and-coin {
+    max-width: 500px;
+    margin-left: 100px;
+
+    form {
+      padding: 0;
+
+      .mat-card {
+        flex-grow: 1;
+
+        .mat-card-subtitle {
+          text-align: center;
+          margin: 15px 0 25px;
+        }
+
+        .mat-card-content {
+
+        }
+      }
+    }
+
+    ::ng-deep .mat-tab-labels {
+      background-color: $kindnessGreen;
+      .mat-tab-label {
+        flex-grow: 1;
+        color: white;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .optional-divider {
+    > * {
+      flex-grow: 1;
+    }
+
+    > label {
+      flex-shrink: 1;
+      flex-grow: 0;
+      padding: 0 10px;
+    }
+
+    > div {
+      border-top: 1px solid #ccc;
+      margin-top: 8px;
+    }
+  }
+}
