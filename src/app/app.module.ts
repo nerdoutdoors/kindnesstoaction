@@ -5,7 +5,6 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
-import 'hammerjs';
 
 // all app modules
 import { routing } from './app-routing.module';

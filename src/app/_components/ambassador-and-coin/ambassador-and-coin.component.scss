@@ -1,13 +1,20 @@
 @import "~assets/styles/colors";
 
+// map stuffs
+#map {
+  height: 100%;
+  width: 100%;
+}
+
 .ambassador-and-coin-section {
-  background: center / cover no-repeat url(../../../assets/images/google-map-example.png);
-  height: 600px;
+  height: 800px;
   padding: 0;
 
   .ambassador-and-coin {
     max-width: 500px;
     margin-left: 100px;
+    position: absolute;
+    z-index: 100;
 
     form {
       padding: 0;
