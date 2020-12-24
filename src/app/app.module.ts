@@ -29,7 +29,6 @@ import { CauseComponent } from './_components/cause/cause.component';
 import { PicturesComponent } from './_components/pictures/pictures.component';
 import { SupportComponent } from './_components/support/support.component';
 import { SocialComponent } from './_components/social/social.component';
-import {NgbCarouselModule} from "@ng-bootstrap/ng-bootstrap";
 import { BlogComponent } from './_components/blog/blog.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import { MatCardModule} from "@angular/material/card";
@@ -68,7 +67,6 @@ import {AmbassadorAndCoinComponent} from './_components/ambassador-and-coin/amba
     BrowserAnimationsModule,
     NoopAnimationsModule,
     LayoutModule,
-    NgbCarouselModule,
     MatFormFieldModule,
     MatCardModule,
     MatIconModule,
