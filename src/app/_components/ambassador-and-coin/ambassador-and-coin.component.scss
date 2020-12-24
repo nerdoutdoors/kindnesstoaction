@@ -21,7 +21,13 @@
         }
 
         .mat-card-content {
-
+          ::ng-deep .mat-form-field-flex {
+            &:hover {
+              .mat-form-field-outline {
+                color: $kindnessGray;
+              }
+            }
+          }
         }
       }
     }
