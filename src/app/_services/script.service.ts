@@ -1,5 +1,9 @@
-import {Injectable} from "@angular/core";
-import {ScriptStore} from "./script.store";
+/**
+ * @credit: Niroj - https://www.edureka.co/community/67336/how-to-load-external-scripts-dynamically-in-angular
+ */
+
+import { Injectable } from '@angular/core';
+import { ScriptStore } from './script.store';
 
 declare var document: any;
 
@@ -25,24 +29,24 @@ export class ScriptService {
 
   loadScript(name: string) {
     return new Promise((resolve, reject) => {
-      //resolve if already loaded
+      // resolve if already loaded
       if (this.scripts[name].loaded) {
         resolve({script: name, loaded: true, status: 'Already Loaded'});
       }
       else {
-        //load script
+        // load script
         let script = document.createElement('script');
         script.type = 'text/javascript';
         script.src = this.scripts[name].src;
-        if (script.readyState) {  //IE
+        if (script.readyState) {  // IE
           script.onreadystatechange = () => {
-            if (script.readyState === "loaded" || script.readyState === "complete") {
+            if (script.readyState === 'loaded' || script.readyState === 'complete') {
               script.onreadystatechange = null;
               this.scripts[name].loaded = true;
               resolve({script: name, loaded: true, status: 'Loaded'});
             }
           };
-        } else {  //Others
+        } else {  // Others
           script.onload = () => {
             this.scripts[name].loaded = true;
             resolve({script: name, loaded: true, status: 'Loaded'});

@@ -39,11 +39,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
 import { AmbassadorAndCoinComponent } from './_components/ambassador-and-coin/ambassador-and-coin.component';
 import { Points } from './_components/ambassador-and-coin/points';
-
-// pipes
-import { SafeHtmlPipe } from './_helpers/safe.pipe';
-import {EmbedIframeComponent} from './_components/embed-iframe.component';
-import {ScriptService} from './_services/script.service';
+import { ScriptService } from './_services/script.service';
 
 @NgModule({
   declarations: [
@@ -62,10 +58,6 @@ import {ScriptService} from './_services/script.service';
     SocialComponent,
     BlogComponent,
     AmbassadorAndCoinComponent,
-    EmbedIframeComponent,
-
-    // Pipes
-    SafeHtmlPipe,
   ],
   imports: [
     BrowserModule,
