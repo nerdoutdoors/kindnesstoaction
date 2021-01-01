@@ -16,47 +16,48 @@ import { AuthGuard } from './_guards/auth.guard';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 
 // all services
-import { AuthenticationService, FileService } from './_services/index';
+import { AuthenticationService, FileService } from './_services';
 
 // all components
 import { AppComponent } from './_components/app.component';
 import { LoginComponent, RegisterComponent, ForgotPasswordComponent, ResetPasswordComponent } from './_components/auth/index';
 import { NavigationComponent } from './_components/navigation/navigation.component';
 import { HomeComponent } from './_components/home/home.component';
-import { HeroComponent } from "./_components/hero/hero.component";
+import { HeroComponent } from './_components/hero/hero.component';
 import { CauseComponent } from './_components/cause/cause.component';
 import { PicturesComponent } from './_components/pictures/pictures.component';
 import { SupportComponent } from './_components/support/support.component';
 import { SocialComponent } from './_components/social/social.component';
 import { BlogComponent } from './_components/blog/blog.component';
-import {MatFormFieldModule} from "@angular/material/form-field";
-import { MatCardModule} from "@angular/material/card";
-import {MatIconModule} from "@angular/material/icon";
-import {MatInputModule} from "@angular/material/input";
-import {MatOptionModule} from "@angular/material/core";
-import {MatSelectModule} from "@angular/material/select";
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatButtonModule} from '@angular/material/button';
-import {AmbassadorAndCoinComponent} from './_components/ambassador-and-coin/ambassador-and-coin.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule} from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonModule } from '@angular/material/button';
+import { AmbassadorAndCoinComponent } from './_components/ambassador-and-coin/ambassador-and-coin.component';
+import { Points } from './_components/ambassador-and-coin/points';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        LoginComponent,
-        RegisterComponent,
-        ForgotPasswordComponent,
-        ResetPasswordComponent,
-        NavigationComponent,
-        HomeComponent,
-        HeroComponent,
-        HeroComponent,
-        CauseComponent,
-        PicturesComponent,
-        SupportComponent,
-        SocialComponent,
-        BlogComponent,
-      AmbassadorAndCoinComponent,
-    ],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    NavigationComponent,
+    HomeComponent,
+    HeroComponent,
+    HeroComponent,
+    CauseComponent,
+    PicturesComponent,
+    SupportComponent,
+    SocialComponent,
+    BlogComponent,
+    AmbassadorAndCoinComponent,
+  ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -77,7 +78,8 @@ import {AmbassadorAndCoinComponent} from './_components/ambassador-and-coin/amba
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     AuthGuard,
     AuthenticationService,
-    FileService
+    FileService,
+    Points,
   ],
   bootstrap: [AppComponent]
 })

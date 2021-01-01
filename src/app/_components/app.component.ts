@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from '../_services/authentication.service';
+import { AuthenticationService } from '../_services';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +7,8 @@ import { AuthenticationService } from '../_services/authentication.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  logoPath: string = '../../assets/images/kindness-org-logo.png';
-  orgPath: string = 'https://www.kindnesstoaction.org/';
+  logoPath = '../../assets/images/kindness-org-logo.png';
+  orgPath = 'https://www.kindnesstoaction.org/';
 
   constructor(public authService: AuthenticationService) { }
 }
