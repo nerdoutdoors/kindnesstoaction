@@ -11,9 +11,4 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  openOptions() {
-  	window.document.getElementById('dashboard-button').click();
-  }
-
-
 }

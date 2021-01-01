@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-pictures',
@@ -22,10 +21,6 @@ export class PicturesComponent {
     },
   ];
 
-  constructor(config: NgbCarouselConfig) {
-    config.interval = 3000;
-    config.wrap = false;
-    config.keyboard = true;
-    config.pauseOnHover = false;
+  constructor() {
   }
 }

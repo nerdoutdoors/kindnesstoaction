@@ -1,27 +1,36 @@
 .pictures {
   display: flex;
-  //justify-content: center;
   background-color: #000;
-}
 
-// Ng-bootstrap override styles
-::ng-deep .carousel {
-  width: 100%;
-  outline: none;
+  .img-ticker {
+    animation: ticker-kf 15s linear infinite;
+    height: 600px;
 
-  .carousel-inner {
-    .carousel-item {
-      transition: transform 0.8s ease-in-out;
+    .image {
+      height: inherit;
+      position: relative;
+      text-align: center;
 
-      .picsum-img-wrapper {
-        height: 600px;
-        display: flex;
-        justify-content: center;
+      img {
+        height: inherit;
+      }
 
-        img {
-          height: inherit;
-        }
+      h3 {
+        position: absolute;
+        bottom: 2.5rem;
+        color: white;
+        width: 100%;
       }
     }
+  }
+}
+
+@keyframes ticker-kf {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-50rem, 0, 0);
   }
 }

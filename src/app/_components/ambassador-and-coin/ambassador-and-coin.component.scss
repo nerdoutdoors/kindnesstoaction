@@ -1,0 +1,68 @@
+@import "~assets/styles/colors";
+
+// map stuffs
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+.ambassador-and-coin-section {
+  height: 800px;
+  padding: 0;
+
+  .ambassador-and-coin {
+    max-width: 500px;
+    margin-left: 100px;
+    position: absolute;
+    z-index: 100;
+
+    form {
+      padding: 0;
+
+      .mat-card {
+        flex-grow: 1;
+
+        .mat-card-subtitle {
+          text-align: center;
+          margin: 15px 0 25px;
+        }
+
+        .mat-card-content {
+          ::ng-deep .mat-form-field-flex {
+            &:hover {
+              .mat-form-field-outline {
+                color: $kindnessGray;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    ::ng-deep .mat-tab-labels {
+      background-color: $kindnessGreen;
+      .mat-tab-label {
+        flex-grow: 1;
+        color: white;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .optional-divider {
+    > * {
+      flex-grow: 1;
+    }
+
+    > label {
+      flex-shrink: 1;
+      flex-grow: 0;
+      padding: 0 10px;
+    }
+
+    > div {
+      border-top: 1px solid #ccc;
+      margin-top: 8px;
+    }
+  }
+}
