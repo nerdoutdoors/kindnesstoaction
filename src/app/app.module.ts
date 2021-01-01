@@ -40,6 +40,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { AmbassadorAndCoinComponent } from './_components/ambassador-and-coin/ambassador-and-coin.component';
 import { Points } from './_components/ambassador-and-coin/points';
 
+// pipes
+import { SafeHtmlPipe } from './_helpers/safe.pipe';
+import {EmbedIframeComponent} from './_components/embed-iframe.component';
+import {ScriptService} from './_services/script.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +62,10 @@ import { Points } from './_components/ambassador-and-coin/points';
     SocialComponent,
     BlogComponent,
     AmbassadorAndCoinComponent,
+    EmbedIframeComponent,
+
+    // Pipes
+    SafeHtmlPipe,
   ],
   imports: [
     BrowserModule,
@@ -80,6 +89,7 @@ import { Points } from './_components/ambassador-and-coin/points';
     AuthenticationService,
     FileService,
     Points,
+    ScriptService,
   ],
   bootstrap: [AppComponent]
 })
