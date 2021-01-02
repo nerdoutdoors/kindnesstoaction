@@ -16,7 +16,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 
 // all services
-import { AuthenticationService, FileService } from './_services';
+import { AuthenticationService } from './_services';
 
 // all components
 import { AppComponent } from './_components/app.component';
@@ -79,7 +79,6 @@ import { ScriptService } from './_services/script.service';
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     AuthGuard,
     AuthenticationService,
-    FileService,
     Points,
     ScriptService,
   ],
