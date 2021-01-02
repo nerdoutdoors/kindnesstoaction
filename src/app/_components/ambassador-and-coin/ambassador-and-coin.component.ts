@@ -43,6 +43,7 @@ export class AmbassadorAndCoinComponent implements OnInit {
           streetViewControl: false,
           mapTypeControl: false,
           fullscreenControl: false,
+          disableDefaultUI: true,
         });
 
         // create markers for map points

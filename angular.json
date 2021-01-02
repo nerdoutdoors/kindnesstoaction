@@ -21,7 +21,11 @@
               "src/favicon.ico"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/styles/spinner.css",
+              "src/assets/styles/on-scroll-effect.css",
+              "src/assets/styles/colors.scss",
+              "src/assets/styles/google-maps-theme.scss"
             ],
             "scripts": []
           },
