@@ -3,6 +3,7 @@ import { MatFormFieldControl } from '@angular/material/form-field';
 import { Loader } from '@googlemaps/js-api-loader';
 import { Points } from './points';
 import LatLngBounds = google.maps.LatLngBounds;
+import { QueryService } from '../../_services/query.service';
 
 const loader = new Loader({
   apiKey: 'AIzaSyClzIs4beJRuUasJRaY-M7notQHmre5UWQ',
@@ -24,15 +25,19 @@ export class AmbassadorAndCoinComponent implements OnInit {
 
   constructor(
     private points: Points,
-  ) {}
+    private queryService: QueryService,
+  ) {
+    this.queryService
+      .getAllChimes()
+      .subscribe((results) => {
+        this.coinDetails = results.map((chime) => ({
+          lat: chime.latitude,
+          lng: chime.longitude,
+        }));
+      });
+  }
 
   ngOnInit() {
-    // TODO: query api for point data
-    this.coinDetails = [
-      { lat: '29.749907', lng: '-95.358421' }, // Houston
-      { lat: '47.6062', lng: '-122.3321' } // Seattle
-    ];
-
     loader
       .load()
       .then(() => {
@@ -43,6 +48,7 @@ export class AmbassadorAndCoinComponent implements OnInit {
           streetViewControl: false,
           mapTypeControl: false,
           fullscreenControl: false,
+          disableDefaultUI: true,
         });
 
         // create markers for map points

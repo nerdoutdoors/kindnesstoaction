@@ -40,6 +40,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AmbassadorAndCoinComponent } from './_components/ambassador-and-coin/ambassador-and-coin.component';
 import { Points } from './_components/ambassador-and-coin/points';
 import { ScriptService } from './_services/script.service';
+import { QueryService } from './_services/query.service';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { ScriptService } from './_services/script.service';
     AuthenticationService,
     Points,
     ScriptService,
+    QueryService,
   ],
   bootstrap: [AppComponent]
 })
