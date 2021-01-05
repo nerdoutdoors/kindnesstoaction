@@ -20,6 +20,8 @@ const loader = new Loader({
 export class AmbassadorAndCoinComponent implements OnInit {
   private mapPoints;
   private coinDetails;
+
+  public waiting = false;
   public map: google.maps.Map;
   public sendEmail = () => {};
 
