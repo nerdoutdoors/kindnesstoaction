@@ -32,6 +32,10 @@ $app-accent:  mat-palette($kindnessColorsSecondary, 100);
 // The warn palette is optional (defaults to red).
 $app-warn:    mat-palette($mat-red);
 
+$custom-typography: mat-typography-config(
+  $font-family: '"SecondaryFont", sans-serif;'
+);
+
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as `color` or `typography`.
 $app-theme: mat-light-theme((
@@ -45,4 +49,5 @@ $app-theme: mat-light-theme((
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
+@include mat-core($custom-typography);
 @include angular-material-theme($app-theme);
