@@ -41,6 +41,7 @@ import { AmbassadorAndCoinComponent } from './_components/ambassador-and-coin/am
 import { Points } from './_components/ambassador-and-coin/points';
 import { ScriptService } from './_services/script.service';
 import { QueryService } from './_services/query.service';
+import { TypingAnimationModule } from 'angular-typing-animation';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { QueryService } from './_services/query.service';
     MatIconModule,
     MatInputModule, MatOptionModule, MatSelectModule, MatIconModule,
     FormsModule, MatTabsModule, MatButtonModule,
+    TypingAnimationModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
