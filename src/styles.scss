@@ -2,11 +2,21 @@
 @import "~font-awesome/css/font-awesome.css";
 @import "assets/styles/colors";
 
+@font-face {
+  font-family: BlackJack;
+  src: url(./assets/font/blackjack/blackjack.otf);
+}
+
+@font-face {
+  font-family: SecondaryFont;
+  src: url(./assets/font/quicksand/Quicksand-Regular.otf);
+}
+
 html, body {
   margin: 0;
   padding:0;
   line-height: normal;
-  font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: SecondaryFont, 'Helvetica Neue', Arial, sans-serif;
 }
 
 div {
@@ -21,6 +31,11 @@ h3 {
 
 h3, h4, h5, p {
   margin: 0 0 16px;
+}
+
+blockquote,
+h1, h2 {
+  font-family: BlackJack;
 }
 
 section {
@@ -39,6 +54,7 @@ section {
     font-size: 1.5rem;
     line-height: 2rem;
     margin-top: 25px;
-    opacity: 0.6;
+    opacity: 0.65;
+    letter-spacing: -0.1rem;
   }
 }
