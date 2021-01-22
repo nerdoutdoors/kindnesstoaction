@@ -39,12 +39,24 @@
       }
     }
 
-    ::ng-deep .mat-tab-labels {
+    ::ng-deep .mat-tab-label-container {
       background-color: $kindnessGreen;
-      .mat-tab-label {
-        flex-grow: 1;
-        color: white;
-        font-size: 1rem;
+
+      .mat-tab-labels {
+        .mat-tab-label {
+          flex-grow: 1;
+          color: white;
+          font-size: 1rem;
+          font-weight: 700;
+
+          &-active {
+            opacity: 1;
+          }
+        }
+      }
+
+      .mat-ink-bar {
+        background-color: black;
       }
     }
   }

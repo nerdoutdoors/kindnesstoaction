@@ -16,18 +16,26 @@
               <mat-label>Title</mat-label>
               <input matInput placeholder="Short title for kindness action">
             </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Description</mat-label>
-              <textarea matInput placeholder="What was the act of kindness?"></textarea>
-            </mat-form-field>
             <div class="d-flex align-center optional-divider">
               <div></div>
               <label>Optional</label>
               <div></div>
             </div>
             <mat-form-field appearance="outline">
+              <mat-label>Giver</mat-label>
+              <input matInput placeholder="Person or group giving the coin">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Receiver</mat-label>
+              <input matInput placeholder="Person or group performing the act of kindness">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
               <mat-label>Email</mat-label>
               <input matInput placeholder="Fill if you wish to receive updates for this coin">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Description</mat-label>
+              <textarea matInput placeholder="What was the act of kindness?"></textarea>
             </mat-form-field>
             <button mat-raised-button color="primary">
               <span>Upload Image</span>
@@ -51,11 +59,7 @@
           <mat-card-content class="d-flex flex-column">
             <div class="d-flex flex-row justify-content-between">
               <mat-form-field appearance="outline">
-                <mat-label>First Name</mat-label>
-                <input matInput />
-              </mat-form-field>
-              <mat-form-field appearance="outline">
-                <mat-label>Last Name</mat-label>
+                <mat-label>Name</mat-label>
                 <input matInput />
               </mat-form-field>
             </div>
