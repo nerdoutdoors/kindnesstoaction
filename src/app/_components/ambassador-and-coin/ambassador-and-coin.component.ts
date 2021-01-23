@@ -32,10 +32,7 @@ export class AmbassadorAndCoinComponent implements OnInit {
     this.queryService
       .getAllChimes()
       .subscribe((results) => {
-        this.coinDetails = results.map((chime) => ({
-          lat: chime.latitude,
-          lng: chime.longitude,
-        }));
+        this.coinDetails = results;
       });
   }
 

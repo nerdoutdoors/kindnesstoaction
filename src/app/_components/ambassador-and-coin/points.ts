@@ -2,8 +2,16 @@ import { get } from 'lodash';
 import { Injectable } from '@angular/core';
 import MarkerOptions = google.maps.MarkerOptions;
 import LatLngBounds = google.maps.LatLngBounds;
+import MarkerClusterer from '@googlemaps/markerclustererplus';
+
+export const ELIJAH_COIN_NUMBER = '012104';
+export const DEFAULT_MARKER_RADIUS = 15;
+
+export const kindnessGreen = '#82be3f';
+export const kindnessGray = '#a0a2a5';
 
 export enum MarkerConfig {
+  ELIJAH = 'ELIJAH',
   COIN = 'COIN',
 }
 
@@ -17,75 +25,63 @@ export class Points {
     }
 
     points.forEach((point) => {
-      const { lat, lng } = point;
-      // create popup
-
-      // get corresponding marker styles
-      // const markerStyles = this.applyStyles(MarkerConfig[`${type}`]);
-
-      // apply styles to label
-      // const label =
-      //   type !== MarkerConfig.CORE_EVENT
-      //     ? {
-      //       text: portCode,
-      //       ...markerStyles['label'],
-      //     }
-      //     : null;
+      const { latitude, longitude, coin_num } = point;
 
       const position = {
-        lat : parseFloat( lat ),
-        lng : parseFloat( lng )
+        lat : parseFloat( latitude ),
+        lng : parseFloat( longitude )
       };
+
+      const popup = this.createPopup(point, `Chime #${coin_num}`);
+      const markerStyles = this.applyStyles(coin_num === ELIJAH_COIN_NUMBER ? MarkerConfig.ELIJAH : MarkerConfig.COIN);
 
       // create marker and apply styles
       const marker = new google.maps.Marker({
         position,
         map,
-        // ...markerStyles,
-        // label,
-        icon: {
+        ...markerStyles,
+        label: {
+          text: 'K'
+        },
+        // icon: {
           // path: google.maps.SymbolPath.CIRCLE,
           // ...markerStyles['icon'],
-        },
+        // },
       } as MarkerOptions);
+
+      marker.addListener('click', () => {
+        popup.open(map, marker);
+      });
+      map.addListener('click', () => {
+        popup.close();
+      });
 
       allMarkers.push(marker as never);
       return;
     });
 
-    // TODO: move back into marker generation when points have unique information
-    // allMarkers.forEach((marker) => {
-    //   // add event listeners
-    //   marker.addListener('mouseover', () => {
-    //     popup.open(map, marker);
-    //   });
-    //   marker.addListener('mouseout', () => {
-    //     popup.close();
-    //   });
-    // });
-
-    return allMarkers;
+    return new MarkerClusterer(map, allMarkers, {
+      imagePath:
+        '../../../assets/images/m',
+    });
   }
 
-  createPopup(point, title, contents) {
-    const { position } = point;
+  createPopup(point, infoWindowTitle) {
+    const { title, description, image, position } = point;
 
-    // Using this pixel offset because the infowindow was triggering the mouseover & mouseout events on the marker causing the window to open and close indefinitely.
+    // Using this pixel offset because the infowindow was triggering the mouseover & mouseout events on
+    // the marker causing the window to open and close indefinitely.
     const pixelOffset = new google.maps.Size(0, -2);
 
     // Create and hook up info windows
     const content =
-      '<div class="popup-content">' +
-      '<h1 class="popup-content__title">' +
-      title +
-      '</h1>' +
-      '<div class="popup-content__content">' +
-      contents.reduce((acc, curr) => {
-        acc += '<div class="content">' + curr + '</div>';
-        return acc;
-      }, '') +
-      '</div>' +
-      '</div>';
+      `<div class="popup-content">
+        <h2 class="popup-content__title">${infoWindowTitle}</h2>
+        <div class="popup-content__content">
+        <h3>${title}</h3>
+        <div class="content">${description || ''}</div>
+        <div class="content content--image">${image || ''}</div>
+      </div>`;
 
     return new google.maps.InfoWindow({
       content,
@@ -95,18 +91,38 @@ export class Points {
   }
 
   applyStyles(type: MarkerConfig) {
-    const port = {
-      label: {
-        color: '#FFFFFF',
-      },
-      icon: {
-        scale: 20,
-        fillColor: '#336699',
-        fillOpacity: 1,
-        strokeWeight: 1.5,
-        strokeColor: '#FFFFFF',
-      },
-    };
+    switch (type) {
+      case MarkerConfig.COIN: {
+        return {
+          label: {
+            color: '#000',
+          },
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: DEFAULT_MARKER_RADIUS,
+            fillColor: '#FFFFFF',
+            fillOpacity: 1,
+            strokeWeight: 3.5,
+            strokeColor: kindnessGreen,
+          },
+        };
+      }
+      case MarkerConfig.ELIJAH: {
+        return {
+          label: {
+            color: '#FFFFFF',
+          },
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 25,
+            fillColor: '#FFFFFF',
+            fillOpacity: 1,
+            strokeWeight: 2,
+            strokeColor: '#336699',
+          },
+        };
+      }
+    }
   }
 
   determineBounds(markers): LatLngBounds | undefined {

@@ -39,6 +39,10 @@
       }
     }
 
+    ::ng-deep .mat-tab-header {
+      border-bottom: 0;
+    }
+
     ::ng-deep .mat-tab-label-container {
       background-color: $kindnessGreen;
 

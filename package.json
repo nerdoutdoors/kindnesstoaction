@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "10.2.4",
     "@angular/router": "10.2.4",
     "@googlemaps/js-api-loader": "1.11.1",
+    "@googlemaps/markerclustererplus": "1.0.3",
     "angular-typing-animation": "0.5.4",
     "bootstrap": "4.5.3",
     "core-js": "2.5.6",
