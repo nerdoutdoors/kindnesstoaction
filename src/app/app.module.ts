@@ -42,6 +42,7 @@ import { Points } from './_components/ambassador-and-coin/points';
 import { ScriptService } from './_services/script.service';
 import { QueryService } from './_services/query.service';
 import { TypingAnimationModule } from 'angular-typing-animation';
+import {FontAwesome} from './_shared/font-awesome.module';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { TypingAnimationModule } from 'angular-typing-animation';
     MatInputModule, MatOptionModule, MatSelectModule, MatIconModule,
     FormsModule, MatTabsModule, MatButtonModule,
     TypingAnimationModule,
+    FontAwesome,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
