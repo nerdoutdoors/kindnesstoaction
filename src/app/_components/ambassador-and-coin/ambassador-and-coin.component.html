@@ -1,5 +1,5 @@
 <section class="ambassador-and-coin-section cbp-so-section">
-  <div class="ambassador-and-coin-section__register cbp-so-side-left container">
+  <div [ngClass]="isOpen ? 'slide-panels--close' : 'slide-panels--open'" class="ambassador-and-coin-section__register cbp-so-side-left container">
     <mat-tab-group class="ambassador-and-coin">
       <mat-tab label="Add Coin" class="ambassador-and-coin__coin">
         <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && sendEmail()"
@@ -100,8 +100,9 @@
         </form>
       </mat-tab>
     </mat-tab-group>
-    <div class="hide-panel">
-      <fa-icon [icon]="['fas', 'angle-left']" size="lg"></fa-icon>
+    <div class="hide-panel" (click)="hidePanels()">
+      <fa-icon *ngIf="isOpen" [icon]="['fas', 'angle-left']" size="2x"></fa-icon>
+      <fa-icon *ngIf="!isOpen" [icon]="['fas', 'angle-right']" size="2x"></fa-icon>
     </div>
   </div>
   <div class="ambassador-and-coin-section__search">

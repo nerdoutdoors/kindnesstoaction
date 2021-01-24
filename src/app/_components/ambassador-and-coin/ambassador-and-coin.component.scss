@@ -1,5 +1,8 @@
 @import "~assets/styles/colors";
 
+$panelOffset: 100px;
+$panelMaxWidth: 500px;
+
 // map stuffs
 #map {
   height: 100%;
@@ -10,9 +13,22 @@
   height: 800px;
   padding: 0;
 
+  .slide-panels {
+    &--open {
+      transform: translateX(-($panelMaxWidth + ($panelOffset / 2)));
+      transition: transform 0.5s ease-in-out;
+
+    }
+    &--close {
+      transform: translateX(0%);
+      transition: transform 0.5s ease-in-out;
+
+    }
+  }
+
   &__register {
-    max-width: 500px;
-    margin-left: 100px;
+    max-width: $panelMaxWidth;
+    margin-left: $panelOffset;
     z-index: 100;
     position: absolute;
 
@@ -72,6 +88,7 @@
       position: absolute;
       right: 0;
       top: 0;
+      cursor: pointer;
     }
   }
 

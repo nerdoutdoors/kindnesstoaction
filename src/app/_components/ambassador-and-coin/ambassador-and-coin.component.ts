@@ -22,6 +22,7 @@ export class AmbassadorAndCoinComponent implements OnInit {
   private coinDetails;
 
   public waiting = false;
+  public isOpen = true; // default page load
   public map: google.maps.Map;
   public sendEmail = () => {};
 
@@ -64,5 +65,10 @@ export class AmbassadorAndCoinComponent implements OnInit {
           this.map.fitBounds(bounds as LatLngBounds);
         }
       });
+  }
+
+  hidePanels() {
+    console.log('here!')
+    this.isOpen = !this.isOpen;
   }
 }
