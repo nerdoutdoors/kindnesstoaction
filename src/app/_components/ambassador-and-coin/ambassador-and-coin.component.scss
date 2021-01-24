@@ -10,59 +10,73 @@
   height: 800px;
   padding: 0;
 
-  .ambassador-and-coin {
+  &__register {
     max-width: 500px;
     margin-left: 100px;
-    position: absolute;
     z-index: 100;
+    position: absolute;
 
-    form {
-      padding: 0;
+    .ambassador-and-coin {
+      position: relative;
 
-      .mat-card {
-        flex-grow: 1;
+      form {
+        padding: 0;
 
-        .mat-card-subtitle {
-          text-align: center;
-          margin: 15px 0 25px;
-        }
+        .mat-card {
+          flex-grow: 1;
 
-        .mat-card-content {
-          ::ng-deep .mat-form-field-flex {
-            &:hover {
-              .mat-form-field-outline {
-                color: $kindnessGray;
+          .mat-card-subtitle {
+            text-align: center;
+            margin: 15px 0 25px;
+          }
+
+          .mat-card-content {
+            ::ng-deep .mat-form-field-flex {
+              &:hover {
+                .mat-form-field-outline {
+                  color: $kindnessGray;
+                }
               }
             }
           }
         }
       }
-    }
 
-    ::ng-deep .mat-tab-header {
-      border-bottom: 0;
-    }
+      ::ng-deep .mat-tab-header {
+        border-bottom: 0;
+      }
 
-    ::ng-deep .mat-tab-label-container {
-      background-color: $kindnessGreen;
+      ::ng-deep .mat-tab-label-container {
+        background-color: $kindnessGreen;
 
-      .mat-tab-labels {
-        .mat-tab-label {
-          flex-grow: 1;
-          color: white;
-          font-size: 1rem;
-          font-weight: 700;
+        .mat-tab-labels {
+          .mat-tab-label {
+            flex-grow: 1;
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
 
-          &-active {
-            opacity: 1;
+            &-active {
+              opacity: 1;
+            }
           }
         }
-      }
 
-      .mat-ink-bar {
-        background-color: black;
+        .mat-ink-bar {
+          background-color: black;
+        }
       }
     }
+
+    .hide-panel {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  &__search {
+
   }
 
   .optional-divider {

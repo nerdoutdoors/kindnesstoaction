@@ -127,15 +127,16 @@ export class Points {
 
   determineBounds(markers): LatLngBounds | undefined {
     const bounds = new google.maps.LatLngBounds();
+    const clusterMarkers = markers.getMarkers();
 
-    if (!markers || !bounds.getNorthEast()) {
+    if (!clusterMarkers || !bounds.getNorthEast()) {
       return undefined;
     }
 
     // plot all marker points
-    for (let i = 0; i < markers.length; i++) {
-      if (markers[i]) {
-        bounds.extend(markers[i].getPosition());
+    for (let i = 0; i < clusterMarkers.length; i++) {
+      if (clusterMarkers[i]) {
+        bounds.extend(clusterMarkers[i].getPosition());
       }
     }
 
