@@ -15,22 +15,33 @@ $panelMaxWidth: 500px;
 
   .slide-panels {
     &--open {
-      transform: translateX(-($panelMaxWidth + ($panelOffset / 2)));
       transition: transform 0.5s ease-in-out;
 
     }
     &--close {
-      transform: translateX(0%);
       transition: transform 0.5s ease-in-out;
 
     }
   }
 
-  &__register {
+  &__register,
+  &__search {
     max-width: $panelMaxWidth;
-    margin-left: $panelOffset;
     z-index: 100;
     position: absolute;
+  }
+
+  &__register {
+    margin-left: $panelOffset;
+
+    &.slide-panels {
+      &--open {
+        transform: translateX(-($panelMaxWidth + ($panelOffset / 2)));
+      }
+      &--close {
+        transform: translateX(0%);
+      }
+    }
 
     .ambassador-and-coin {
       position: relative;
@@ -93,7 +104,17 @@ $panelMaxWidth: 500px;
   }
 
   &__search {
+    margin-right: $panelOffset;
+    right: 0;
 
+    &.slide-panels {
+      &--open {
+        transform: translateX($panelMaxWidth + ($panelOffset / 2));
+      }
+      &--close {
+        transform: translateX(0%);
+      }
+    }
   }
 
   .optional-divider {
