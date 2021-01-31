@@ -5,7 +5,7 @@ import LatLngBounds = google.maps.LatLngBounds;
 import MarkerClusterer from '@googlemaps/markerclustererplus';
 
 export const ELIJAH_COIN_NUMBER = '012104';
-export const DEFAULT_MARKER_RADIUS = 15;
+export const DEFAULT_MARKER_RADIUS = 12;
 
 export const kindnessGreen = '#82be3f';
 export const kindnessGray = '#a0a2a5';
@@ -19,6 +19,7 @@ export enum MarkerConfig {
 export class Points {
   generateMarkers(points: any[], map) {
     const allMarkers: any[] = [];
+    const elijahMarker: any[] = [];
 
     if (!points || points.length < 1) {
       return undefined;
@@ -32,7 +33,7 @@ export class Points {
         lng : parseFloat( longitude )
       };
 
-      const popup = this.createPopup(point, `Chime #${coin_num}`);
+      const popup = this.createPopup(point, `#${coin_num}`);
       const markerStyles = this.applyStyles(coin_num === ELIJAH_COIN_NUMBER ? MarkerConfig.ELIJAH : MarkerConfig.COIN);
 
       // create marker and apply styles
@@ -41,7 +42,7 @@ export class Points {
         map,
         ...markerStyles,
         label: {
-          text: 'K'
+          text: coin_num === ELIJAH_COIN_NUMBER ? 'E' : 'K',
         },
         // icon: {
           // path: google.maps.SymbolPath.CIRCLE,
@@ -56,13 +57,21 @@ export class Points {
         popup.close();
       });
 
-      allMarkers.push(marker as never);
+      // open Elijah's popup by default
+      if (coin_num === ELIJAH_COIN_NUMBER) {
+        popup.open(map, marker);
+
+        elijahMarker.push(marker);
+        return;
+      }
+
+      allMarkers.push(marker);
       return;
     });
 
     return new MarkerClusterer(map, allMarkers, {
       imagePath:
-        '../../../assets/images/m',
+        '../../../assets/images/heart',
     });
   }
 
@@ -76,11 +85,14 @@ export class Points {
     // Create and hook up info windows
     const content =
       `<div class="popup-content">
-        <h2 class="popup-content__title">${infoWindowTitle}</h2>
         <div class="popup-content__content">
-        <h3>${title}</h3>
-        <div class="content">${description || ''}</div>
-        <div class="content content--image">${image || ''}</div>
+          <h3>${title} <small class="coin-number">${infoWindowTitle}</small></h3>
+          <div class="description">${description || ''}</div>
+          <div class="image">
+<!--            <img *ngIf="image" src="../../../assets/images/chimes/${image}" alt="Kindness Action Image" />-->
+            <img src="../../../assets/images/elijah-laughing.jpg" alt="Kindness Action Image" />
+          </div>
+        </div>
       </div>`;
 
     return new google.maps.InfoWindow({
@@ -91,33 +103,31 @@ export class Points {
   }
 
   applyStyles(type: MarkerConfig) {
+    const iconDefaults = {
+      path: google.maps.SymbolPath.CIRCLE,
+      fillColor: '#FFFFFF',
+      fillOpacity: 1,
+      strokeWeight: 2,
+    };
+
     switch (type) {
       case MarkerConfig.COIN: {
         return {
-          label: {
-            color: '#000',
-          },
           icon: {
-            path: google.maps.SymbolPath.CIRCLE,
+            ...iconDefaults,
             scale: DEFAULT_MARKER_RADIUS,
             fillColor: '#FFFFFF',
             fillOpacity: 1,
-            strokeWeight: 3.5,
+            strokeWeight: 2,
             strokeColor: kindnessGreen,
           },
         };
       }
       case MarkerConfig.ELIJAH: {
         return {
-          label: {
-            color: '#FFFFFF',
-          },
           icon: {
-            path: google.maps.SymbolPath.CIRCLE,
-            scale: 25,
-            fillColor: '#FFFFFF',
-            fillOpacity: 1,
-            strokeWeight: 2,
+            ...iconDefaults,
+            scale: 15,
             strokeColor: '#336699',
           },
         };
