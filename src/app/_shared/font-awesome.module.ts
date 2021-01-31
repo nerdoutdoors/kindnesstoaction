@@ -27,6 +27,7 @@ import {
   faAngleLeft,
   faCaretDown,
   faCamera,
+  faGlobeAmericas,
 } from '@fortawesome/free-solid-svg-icons';
 
 /* "far" - regular */
@@ -83,6 +84,7 @@ export class FontAwesome {
       faStar,
       faTrashAlt,
       faCalendarAlt,
+      faGlobeAmericas,
     );
   }
 }

@@ -100,10 +100,6 @@
         </form>
       </mat-tab>
     </mat-tab-group>
-    <div class="hide-panel" (click)="hidePanels()">
-      <fa-icon *ngIf="isOpen" [icon]="['fas', 'angle-left']" size="2x"></fa-icon>
-      <fa-icon *ngIf="!isOpen" [icon]="['fas', 'angle-right']" size="2x"></fa-icon>
-    </div>
   </div>
   <div [ngClass]="isOpen ? 'slide-panels--close' : 'slide-panels--open'" class="ambassador-and-coin-section__search cbp-so-side cbp-so-side-right d-flex align-items-center justify-content-center">
     <div class="ambassador-and-coin">
@@ -126,6 +122,13 @@
         </mat-card-content>
       </mat-card>
     </div>
+  </div>
+  <div class="ambassador-and-coin-section__toggle" (click)="hidePanels()">
+    <h3>
+      <span>Show</span>
+      <fa-icon *ngIf="isOpen" [icon]="['fas', 'globe-americas']" size="sm"></fa-icon>
+      <fa-icon *ngIf="!isOpen" [icon]="['fas', 'search']" size="sm"></fa-icon>
+    </h3>
   </div>
   <div id="map"></div>
 </section>

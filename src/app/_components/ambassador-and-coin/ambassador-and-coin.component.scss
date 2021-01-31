@@ -2,6 +2,7 @@
 
 $panelOffset: 100px;
 $panelMaxWidth: 500px;
+$searchPanelMaxWidth: 400px;
 
 // map stuffs
 #map {
@@ -22,6 +23,16 @@ $panelMaxWidth: 500px;
     &--close {
       transition: transform 0.5s ease-in-out;
 
+    }
+  }
+
+  &__register,
+  &__search,
+  &__toggle {
+    box-shadow: 5px 6px 10px rgba(55, 55, 55, 0.5);
+
+    &.container {
+      padding: 0;
     }
   }
 
@@ -67,23 +78,17 @@ $panelMaxWidth: 500px;
         }
       }
     }
-
-    .hide-panel {
-      position: absolute;
-      right: 0;
-      top: 0;
-      cursor: pointer;
-    }
   }
 
   &__search {
     margin-right: $panelOffset;
     right: 0;
     padding: 0;
+    width: $searchPanelMaxWidth;
 
     &.slide-panels {
       &--open {
-        transform: translateX($panelMaxWidth + ($panelOffset / 2));
+        transform: translateX($searchPanelMaxWidth + ($panelOffset / 2));
       }
     }
 
@@ -94,6 +99,28 @@ $panelMaxWidth: 500px;
 
       .mat-card-actions {
         margin: 0 10px auto 20px;
+      }
+    }
+  }
+
+  &__toggle {
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+    display: flex;
+    width: 140px;
+    background-color: #fff;
+    z-index: 1;
+    justify-content: center;
+    left: 50%;
+    margin-left: -70px;
+    border-radius: 0 0 15px 15px;
+
+    h3 {
+      margin: 5px 0 10px;
+
+      .ng-fa-icon {
+        margin-left: 4px;
       }
     }
   }

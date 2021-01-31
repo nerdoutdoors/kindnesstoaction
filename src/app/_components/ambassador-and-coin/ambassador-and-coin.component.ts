@@ -68,7 +68,6 @@ export class AmbassadorAndCoinComponent implements OnInit {
   }
 
   hidePanels() {
-    console.log('here!')
     this.isOpen = !this.isOpen;
   }
 }
