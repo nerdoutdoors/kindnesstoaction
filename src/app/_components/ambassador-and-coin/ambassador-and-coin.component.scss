@@ -5,6 +5,7 @@ $panelMaxWidth: 500px;
 
 // map stuffs
 #map {
+  position: absolute;
   height: 100%;
   width: 100%;
 }
@@ -28,69 +29,41 @@ $panelMaxWidth: 500px;
   &__search {
     max-width: $panelMaxWidth;
     z-index: 100;
-    position: absolute;
-  }
-
-  &__register {
-    margin-left: $panelOffset;
-
-    &.slide-panels {
-      &--open {
-        transform: translateX(-($panelMaxWidth + ($panelOffset / 2)));
-      }
-      &--close {
-        transform: translateX(0%);
-      }
-    }
+    align-self: flex-start;
+    margin-top: 35px;
 
     .ambassador-and-coin {
       position: relative;
 
       form {
         padding: 0;
-
-        .mat-card {
-          flex-grow: 1;
-
-          .mat-card-subtitle {
-            text-align: center;
-            margin: 15px 0 25px;
-          }
-
-          .mat-card-content {
-            ::ng-deep .mat-form-field-flex {
-              &:hover {
-                .mat-form-field-outline {
-                  color: $kindnessGray;
-                }
-              }
-            }
-          }
-        }
       }
 
-      ::ng-deep .mat-tab-header {
-        border-bottom: 0;
-      }
+      .mat-card {
+        flex-grow: 1;
 
-      ::ng-deep .mat-tab-label-container {
-        background-color: $kindnessGreen;
-
-        .mat-tab-labels {
-          .mat-tab-label {
-            flex-grow: 1;
-            color: white;
-            font-size: 1rem;
-            font-weight: 700;
-
-            &-active {
-              opacity: 1;
-            }
-          }
+        .mat-card-subtitle {
+          margin: 15px 0 25px;
         }
+      }
+    }
+  }
 
-        .mat-ink-bar {
-          background-color: black;
+  &__register {
+    margin-left: $panelOffset;
+
+    &.slide-panels {
+      &--close {
+        transform: translateX(-($panelMaxWidth + ($panelOffset / 2)));
+      }
+    }
+
+    .ambassador-and-coin {
+      width: $panelMaxWidth;
+
+      .mat-card {
+        .mat-card-subtitle {
+          text-align: center;
         }
       }
     }
@@ -106,13 +79,56 @@ $panelMaxWidth: 500px;
   &__search {
     margin-right: $panelOffset;
     right: 0;
+    padding: 0;
 
     &.slide-panels {
       &--open {
         transform: translateX($panelMaxWidth + ($panelOffset / 2));
       }
-      &--close {
-        transform: translateX(0%);
+    }
+
+    .ambassador-and-coin {
+      ::ng-deep .mat-form-field-infix {
+        width: 250px;
+      }
+
+      .mat-card-actions {
+        margin: 0 10px auto 20px;
+      }
+    }
+  }
+
+  ::ng-deep .mat-tab-header {
+    border-bottom: 0;
+  }
+
+  ::ng-deep .mat-tab-label-container {
+    background-color: $kindnessGreen;
+
+    .mat-tab-labels {
+      .mat-tab-label {
+        flex-grow: 1;
+        color: white;
+        font-size: 1rem;
+        font-weight: 700;
+
+        &-active {
+          opacity: 1;
+        }
+      }
+    }
+
+    .mat-ink-bar {
+      background-color: black;
+    }
+  }
+
+  .mat-card-content {
+    ::ng-deep .mat-form-field-flex {
+      &:hover {
+        .mat-form-field-outline {
+          color: $kindnessGray;
+        }
       }
     }
   }

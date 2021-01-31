@@ -1,5 +1,5 @@
 <section class="ambassador-and-coin-section cbp-so-section">
-  <div [ngClass]="isOpen ? 'slide-panels--close' : 'slide-panels--open'" class="ambassador-and-coin-section__register cbp-so-side-left container">
+  <div [ngClass]="isOpen ? 'slide-panels--open' : 'slide-panels--close'" class="ambassador-and-coin-section__register cbp-so-side-left container">
     <mat-tab-group class="ambassador-and-coin">
       <mat-tab label="Add Coin" class="ambassador-and-coin__coin">
         <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && sendEmail()"
@@ -106,24 +106,26 @@
     </div>
   </div>
   <div [ngClass]="isOpen ? 'slide-panels--close' : 'slide-panels--open'" class="ambassador-and-coin-section__search cbp-so-side cbp-so-side-right d-flex align-items-center justify-content-center">
-    <mat-card class="d-flex flex-column">
-      <mat-card-subtitle>Search By Coin Id or Title</mat-card-subtitle>
-      <mat-card-content class="d-flex flex-column">
-        <div class="d-flex flex-row justify-content-between">
-          <mat-form-field appearance="outline">
-            <mat-label>Search</mat-label>
-            <input matInput />
-          </mat-form-field>
-        </div>
-      </mat-card-content>
-      <mat-card-actions>
-        <button *ngIf="!waiting"
-                mat-raised-button
-                type="submit" color="primary">
-          <span>Find</span>
-        </button>
-      </mat-card-actions>
-    </mat-card>
+    <div class="ambassador-and-coin">
+      <mat-card class="d-flex flex-column">
+        <mat-card-subtitle>Search By Coin Id or Title</mat-card-subtitle>
+        <mat-card-content class="d-flex flex-row">
+          <div class="d-flex flex-row justify-content-between">
+            <mat-form-field appearance="outline">
+              <mat-label>Search</mat-label>
+              <input matInput  />
+            </mat-form-field>
+          </div>
+          <mat-card-actions>
+            <button *ngIf="!waiting"
+                    mat-raised-button
+                    type="submit" color="primary">
+              <span>Find</span>
+            </button>
+          </mat-card-actions>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
   <div id="map"></div>
 </section>
