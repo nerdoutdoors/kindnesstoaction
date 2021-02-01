@@ -75,6 +75,14 @@ export class AmbassadorAndCoinComponent implements OnInit {
     const search = this.searchForm.get('searchInput').value;
 
     if (!search) {
+      this.queryService
+        .getAllChimes()
+        .subscribe((results) => {
+          this.coinDetails = results;
+          this.loadMarkersToMap();
+          this.isOpen = false;
+        });
+
       return;
     }
 

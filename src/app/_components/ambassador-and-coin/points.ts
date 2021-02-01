@@ -113,7 +113,7 @@ export class Points {
           ...defaults,
           label: {
             text: 'K',
-            color: '#389722',
+            color: '#000',
           },
           icon: {
             ...defaults.icon,
