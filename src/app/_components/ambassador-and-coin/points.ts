@@ -2,8 +2,16 @@ import { get } from 'lodash';
 import { Injectable } from '@angular/core';
 import MarkerOptions = google.maps.MarkerOptions;
 import LatLngBounds = google.maps.LatLngBounds;
+import MarkerClusterer from '@googlemaps/markerclustererplus';
+
+export const ELIJAH_COIN_NUMBER = '012104';
+export const DEFAULT_MARKER_RADIUS = 12;
+
+export const kindnessGreen = '#82be3f';
+export const kindnessGray = '#a0a2a5';
 
 export enum MarkerConfig {
+  ELIJAH = 'ELIJAH',
   COIN = 'COIN',
 }
 
@@ -11,81 +19,76 @@ export enum MarkerConfig {
 export class Points {
   generateMarkers(points: any[], map) {
     const allMarkers: any[] = [];
+    const elijahMarker: any[] = [];
 
     if (!points || points.length < 1) {
       return undefined;
     }
 
-    points.forEach((point) => {
-      const { lat, lng } = point;
-      // create popup
-
-      // get corresponding marker styles
-      // const markerStyles = this.applyStyles(MarkerConfig[`${type}`]);
-
-      // apply styles to label
-      // const label =
-      //   type !== MarkerConfig.CORE_EVENT
-      //     ? {
-      //       text: portCode,
-      //       ...markerStyles['label'],
-      //     }
-      //     : null;
+    points.forEach((point, index) => {
+      const { latitude, longitude, coin_num } = point;
 
       const position = {
-        lat : parseFloat( lat ),
-        lng : parseFloat( lng )
+        lat : parseFloat( latitude ),
+        lng : parseFloat( longitude )
       };
+
+      const popup = this.createPopup(point, `#${coin_num}`);
+      const markerStyles = this.applyStyles(coin_num === ELIJAH_COIN_NUMBER ? MarkerConfig.ELIJAH : MarkerConfig.COIN);
 
       // create marker and apply styles
       const marker = new google.maps.Marker({
         position,
         map,
-        // ...markerStyles,
-        // label,
-        icon: {
-          // path: google.maps.SymbolPath.CIRCLE,
-          // ...markerStyles['icon'],
-        },
+        ...markerStyles,
+        zIndex: coin_num === ELIJAH_COIN_NUMBER ? 100000 : index,
       } as MarkerOptions);
 
-      allMarkers.push(marker as never);
+      marker.addListener('click', () => {
+        popup.open(map, marker);
+      });
+      map.addListener('click', () => {
+        popup.close();
+      });
+
+      // open Elijah's popup by default
+      if (coin_num === ELIJAH_COIN_NUMBER) {
+        popup.open(map, marker);
+
+        elijahMarker.push(marker);
+        return;
+      }
+
+      allMarkers.push(marker);
       return;
     });
 
-    // TODO: move back into marker generation when points have unique information
-    // allMarkers.forEach((marker) => {
-    //   // add event listeners
-    //   marker.addListener('mouseover', () => {
-    //     popup.open(map, marker);
-    //   });
-    //   marker.addListener('mouseout', () => {
-    //     popup.close();
-    //   });
-    // });
-
     return allMarkers;
+    // return new MarkerClusterer(map, allMarkers, {
+    //   imagePath:
+    //     '../../../assets/images/heart',
+    // });
   }
 
-  createPopup(point, title, contents) {
-    const { position } = point;
+  createPopup(point, infoWindowTitle) {
+    const { title, description, image, position } = point;
 
-    // Using this pixel offset because the infowindow was triggering the mouseover & mouseout events on the marker causing the window to open and close indefinitely.
+    // Using this pixel offset because the infowindow was triggering the mouseover & mouseout events on
+    // the marker causing the window to open and close indefinitely.
     const pixelOffset = new google.maps.Size(0, -2);
 
     // Create and hook up info windows
     const content =
-      '<div class="popup-content">' +
-      '<h1 class="popup-content__title">' +
-      title +
-      '</h1>' +
-      '<div class="popup-content__content">' +
-      contents.reduce((acc, curr) => {
-        acc += '<div class="content">' + curr + '</div>';
-        return acc;
-      }, '') +
-      '</div>' +
-      '</div>';
+      `<div class="popup-content">
+        <div class="popup-content__content">
+          <h3>${title} <small class="coin-number">${infoWindowTitle}</small></h3>
+          <div class="description">${description || ''}</div>
+          <div class="image">
+<!--            <img *ngIf="image" src="../../../assets/images/chimes/${image}" alt="Kindness Action Image" />-->
+            <img src="../../../assets/images/elijah-laughing.jpg" alt="Kindness Action Image" />
+          </div>
+        </div>
+      </div>`;
 
     return new google.maps.InfoWindow({
       content,
@@ -95,31 +98,60 @@ export class Points {
   }
 
   applyStyles(type: MarkerConfig) {
-    const port = {
-      label: {
-        color: '#FFFFFF',
-      },
+    const defaults = {
       icon: {
-        scale: 20,
-        fillColor: '#336699',
+        path: google.maps.SymbolPath.CIRCLE,
         fillOpacity: 1,
-        strokeWeight: 1.5,
-        strokeColor: '#FFFFFF',
-      },
+        strokeWeight: 2,
+      }
     };
+
+    switch (type) {
+      case MarkerConfig.COIN: {
+        return {
+          ...defaults,
+          label: {
+            text: 'K',
+            color: '#389722',
+          },
+          icon: {
+            ...defaults.icon,
+            scale: DEFAULT_MARKER_RADIUS,
+            fillColor: '#FFFFFF',
+            strokeColor: kindnessGreen,
+          },
+        };
+      }
+      case MarkerConfig.ELIJAH: {
+        return {
+          ...defaults,
+          label: {
+            text: 'E',
+            color: '#fff',
+          },
+          icon: {
+            ...defaults.icon,
+            scale: 15,
+            strokeColor: '#a0a2a5',
+            fillColor: kindnessGreen,
+          },
+        };
+      }
+    }
   }
 
   determineBounds(markers): LatLngBounds | undefined {
     const bounds = new google.maps.LatLngBounds();
+    const clusterMarkers = markers.getMarkers();
 
-    if (!markers || !bounds.getNorthEast()) {
+    if (!clusterMarkers || !bounds.getNorthEast()) {
       return undefined;
     }
 
     // plot all marker points
-    for (let i = 0; i < markers.length; i++) {
-      if (markers[i]) {
-        bounds.extend(markers[i].getPosition());
+    for (let i = 0; i < clusterMarkers.length; i++) {
+      if (clusterMarkers[i]) {
+        bounds.extend(clusterMarkers[i].getPosition());
       }
     }
 

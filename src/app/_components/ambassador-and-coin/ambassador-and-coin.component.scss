@@ -1,7 +1,12 @@
 @import "~assets/styles/colors";
 
+$panelOffset: 100px;
+$panelMaxWidth: 500px;
+$searchPanelMaxWidth: 400px;
+
 // map stuffs
 #map {
+  position: absolute;
   height: 100%;
   width: 100%;
 }
@@ -10,41 +15,147 @@
   height: 800px;
   padding: 0;
 
-  .ambassador-and-coin {
-    max-width: 500px;
-    margin-left: 100px;
-    position: absolute;
-    z-index: 100;
+  .slide-panels {
+    &--open {
+      transition: transform 0.5s ease-in-out;
 
-    form {
+    }
+    &--close {
+      transition: transform 0.5s ease-in-out;
+
+    }
+  }
+
+  &__register,
+  &__search,
+  &__toggle {
+    box-shadow: 5px 6px 10px rgba(55, 55, 55, 0.5);
+
+    &.container {
       padding: 0;
+    }
+  }
+
+  &__register,
+  &__search {
+    max-width: $panelMaxWidth;
+    z-index: 100;
+    align-self: flex-start;
+    margin-top: 35px;
+
+    .ambassador-and-coin {
+      position: relative;
+
+      form {
+        padding: 0;
+      }
 
       .mat-card {
         flex-grow: 1;
 
         .mat-card-subtitle {
-          text-align: center;
           margin: 15px 0 25px;
-        }
-
-        .mat-card-content {
-          ::ng-deep .mat-form-field-flex {
-            &:hover {
-              .mat-form-field-outline {
-                color: $kindnessGray;
-              }
-            }
-          }
         }
       }
     }
+  }
 
-    ::ng-deep .mat-tab-labels {
-      background-color: $kindnessGreen;
+  &__register {
+    margin-left: $panelOffset;
+
+    &.slide-panels {
+      &--close {
+        transform: translateX(-($panelMaxWidth + ($panelOffset / 2)));
+      }
+    }
+
+    .ambassador-and-coin {
+      width: $panelMaxWidth;
+
+      .mat-card {
+        .mat-card-subtitle {
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  &__search {
+    margin-right: $panelOffset;
+    right: 0;
+    padding: 0;
+    width: $searchPanelMaxWidth;
+
+    &.slide-panels {
+      &--open {
+        transform: translateX($searchPanelMaxWidth + ($panelOffset / 2));
+      }
+    }
+
+    .ambassador-and-coin {
+      ::ng-deep .mat-form-field-infix {
+        width: 250px;
+      }
+
+      .mat-card-actions {
+        margin: 0 10px auto 20px;
+      }
+    }
+  }
+
+  &__toggle {
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+    display: flex;
+    width: 140px;
+    background-color: #fff;
+    z-index: 1;
+    justify-content: center;
+    left: 50%;
+    margin-left: -70px;
+    border-radius: 0 0 15px 15px;
+
+    h3 {
+      margin: 5px 0 10px;
+
+      .ng-fa-icon {
+        margin-left: 4px;
+      }
+    }
+  }
+
+  ::ng-deep .mat-tab-header {
+    border-bottom: 0;
+  }
+
+  ::ng-deep .mat-tab-label-container {
+    background-color: $kindnessGreen;
+
+    .mat-tab-labels {
       .mat-tab-label {
         flex-grow: 1;
         color: white;
         font-size: 1rem;
+        font-weight: 700;
+
+        &-active {
+          opacity: 1;
+        }
+      }
+    }
+
+    .mat-ink-bar {
+      background-color: black;
+    }
+  }
+
+  .mat-card-content {
+    ::ng-deep .mat-form-field-flex {
+      &:hover {
+        .mat-form-field-outline {
+          color: $kindnessGray;
+        }
       }
     }
   }

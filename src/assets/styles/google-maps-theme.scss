@@ -17,18 +17,36 @@
 
   /* marker popup window */
   .popup-content {
-    color: gray;
+    font-size: 14px;
+    line-height: 22px;
+    max-width: 515px;
 
-    &__title {
-      font-size: 14px;
-      font-weight: bold;
-      line-height: 18px;
-      text-transform: uppercase;
+    h3 {
+      font-size: 24px;
+      padding-top: 7px;
+      margin-bottom: 0.75rem;
+
+      small.coin-number {
+        font-size: 14px;
+        color: #a0a2a5;
+      }
     }
 
-    &__content {
-      font-size: 14px;
-      line-height: 24px;
+    .description {
+      font-weight: 400;
+      opacity: 0.8;
+      text-indent: 1rem;
+    }
+
+    .image {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      img {
+        max-height: 300px;
+        padding: 10px 0;
+      }
     }
   }
 }

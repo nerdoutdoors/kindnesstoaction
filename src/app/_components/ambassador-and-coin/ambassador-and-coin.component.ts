@@ -19,9 +19,10 @@ const loader = new Loader({
 
 export class AmbassadorAndCoinComponent implements OnInit {
   private mapPoints;
-  private coinDetails;
+  private coinDetails: any[];
 
   public waiting = false;
+  public isOpen = true; // default page load
   public map: google.maps.Map;
   public sendEmail = () => {};
 
@@ -32,10 +33,7 @@ export class AmbassadorAndCoinComponent implements OnInit {
     this.queryService
       .getAllChimes()
       .subscribe((results) => {
-        this.coinDetails = results.map((chime) => ({
-          lat: chime.latitude,
-          lng: chime.longitude,
-        }));
+        this.coinDetails = results;
       });
   }
 
@@ -44,7 +42,7 @@ export class AmbassadorAndCoinComponent implements OnInit {
       .load()
       .then(() => {
         this.map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
-          center: new google.maps.LatLng(41.850033, -87.6500523),
+          center: new google.maps.LatLng(29.9717, -95.6938),
           zoom: 5,
           mapTypeId: google.maps.MapTypeId.TERRAIN,
           streetViewControl: false,
@@ -65,7 +63,15 @@ export class AmbassadorAndCoinComponent implements OnInit {
             return;
           }
           this.map.fitBounds(bounds as LatLngBounds);
+
+          const elijahLatLng = new google.maps.LatLng(29.9717, -95.6938);
+          this.map.panTo(elijahLatLng);
+          this.map.setCenter(elijahLatLng);
         }
       });
+  }
+
+  hidePanels() {
+    this.isOpen = !this.isOpen;
   }
 }
