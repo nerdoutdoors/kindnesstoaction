@@ -54,6 +54,11 @@ export class AmbassadorAndCoinComponent implements OnInit {
         });
 
         this.loadMarkersToMap();
+
+        // center to Elijah's coin
+        const elijahLatLng = new google.maps.LatLng(29.9717, -95.6938);
+        this.map.panTo(elijahLatLng);
+        this.map.setCenter(elijahLatLng);
       });
 
     this.searchForm = new FormGroup({
@@ -61,13 +66,12 @@ export class AmbassadorAndCoinComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(5)
+          Validators.minLength(10)
         ]),
     });
   }
 
   searchCoinOrTitle = () => {
-    console.log('here!', this.searchForm.get('searchInput').value)
     const search = this.searchForm.get('searchInput').value;
 
     if (!search) {
@@ -79,13 +83,14 @@ export class AmbassadorAndCoinComponent implements OnInit {
       .subscribe((results) => {
         this.coinDetails = results;
         this.loadMarkersToMap();
+        this.isOpen = false;
       });
   }
 
   loadMarkersToMap(): void {
     // ensure clean slate first
     this.points.clearAll(this.mapPoints);
-console.log('wut', this.mapPoints, this.coinDetails)
+
     // create markers for map points
     this.mapPoints = this.points.generateMarkers(this.coinDetails, this.map);
 
@@ -98,14 +103,20 @@ console.log('wut', this.mapPoints, this.coinDetails)
         return;
       }
       this.map.fitBounds(bounds as LatLngBounds);
-
-      const elijahLatLng = new google.maps.LatLng(29.9717, -95.6938);
-      this.map.panTo(elijahLatLng);
-      this.map.setCenter(elijahLatLng);
     }
   }
 
   hidePanels() {
     this.isOpen = !this.isOpen;
+  }
+
+  getErrorMessage() {
+    console.log('getErrorMessages')
+    console.log('here!', this.searchForm.controls)
+    if (this.searchInput.hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return this.searchInput.hasError('email') ? 'Not a valid email' : '';
   }
 }

@@ -103,7 +103,7 @@
   </div>
   <div [ngClass]="isOpen ? 'slide-panels--close' : 'slide-panels--open'" class="ambassador-and-coin-section__search cbp-so-side cbp-so-side-right d-flex align-items-center justify-content-center">
     <div class="ambassador-and-coin">
-      <form (ngSubmit)="f.form.valid && searchCoinOrTitle()" [formGroup]="searchForm">
+      <form [formGroup]="searchForm" (ngSubmit)="f.form.valid && searchCoinOrTitle()">
         <mat-card class="d-flex flex-column">
           <mat-card-subtitle>Search By Coin Id or Title</mat-card-subtitle>
           <mat-card-content class="d-flex flex-row">
@@ -111,6 +111,7 @@
               <mat-form-field appearance="outline">
                 <mat-label>Search</mat-label>
                 <input matInput formControlName="searchInput" />
+<!--                <mat-error *ngIf="searchInput.invalid">{{getErrorMessage()}}</mat-error>-->
               </mat-form-field>
             </div>
             <mat-card-actions>
