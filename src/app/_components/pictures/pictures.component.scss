@@ -1,9 +1,11 @@
+$numberImages: 6rem; // TODO: make dynamic based on actual image count
+
 .pictures {
   display: flex;
   background-color: #000;
 
   .img-ticker {
-    animation: ticker-kf 15s linear infinite;
+    animation: ticker-kf 40s linear infinite;
     height: 600px;
 
     .image {
@@ -31,6 +33,6 @@
   }
 
   100% {
-    transform: translate3d(-50rem, 0, 0);
+    transform: translate3d(-($numberImages * 30), 0, 0);
   }
 }

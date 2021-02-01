@@ -41,7 +41,7 @@ export class Points {
         position,
         map,
         ...markerStyles,
-        zIndex: coin_num === ELIJAH_COIN_NUMBER ? 100000 : index,
+        zIndex: coin_num === ELIJAH_COIN_NUMBER ? 999999 : index,
       } as MarkerOptions);
 
       marker.addListener('click', () => {
@@ -142,16 +142,16 @@ export class Points {
 
   determineBounds(markers): LatLngBounds | undefined {
     const bounds = new google.maps.LatLngBounds();
-    const clusterMarkers = markers.getMarkers();
+    // const clusterMarkers = markers.getMarkers();
 
-    if (!clusterMarkers || !bounds.getNorthEast()) {
+    if (!markers || !bounds.getNorthEast()) {
       return undefined;
     }
 
     // plot all marker points
-    for (let i = 0; i < clusterMarkers.length; i++) {
-      if (clusterMarkers[i]) {
-        bounds.extend(clusterMarkers[i].getPosition());
+    for (let i = 0; i < markers.length; i++) {
+      if (markers[i]) {
+        bounds.extend(markers[i].getPosition());
       }
     }
 
