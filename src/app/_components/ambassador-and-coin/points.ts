@@ -55,8 +55,9 @@ export class Points {
       if (coin_num === ELIJAH_COIN_NUMBER) {
         popup.open(map, marker);
 
-        elijahMarker.push(marker);
-        return;
+        // TODO: use with markercluster
+        // elijahMarker.push(marker);
+        // return;
       }
 
       allMarkers.push(marker);
