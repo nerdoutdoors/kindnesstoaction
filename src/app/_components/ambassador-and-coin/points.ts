@@ -25,7 +25,7 @@ export class Points {
       return undefined;
     }
 
-    points.forEach((point) => {
+    points.forEach((point, index) => {
       const { latitude, longitude, coin_num } = point;
 
       const position = {
@@ -41,13 +41,7 @@ export class Points {
         position,
         map,
         ...markerStyles,
-        label: {
-          text: coin_num === ELIJAH_COIN_NUMBER ? 'E' : 'K',
-        },
-        // icon: {
-          // path: google.maps.SymbolPath.CIRCLE,
-          // ...markerStyles['icon'],
-        // },
+        zIndex: coin_num === ELIJAH_COIN_NUMBER ? 100000 : index,
       } as MarkerOptions);
 
       marker.addListener('click', () => {
@@ -69,10 +63,11 @@ export class Points {
       return;
     });
 
-    return new MarkerClusterer(map, allMarkers, {
-      imagePath:
-        '../../../assets/images/heart',
-    });
+    return allMarkers;
+    // return new MarkerClusterer(map, allMarkers, {
+    //   imagePath:
+    //     '../../../assets/images/heart',
+    // });
   }
 
   createPopup(point, infoWindowTitle) {
@@ -103,32 +98,42 @@ export class Points {
   }
 
   applyStyles(type: MarkerConfig) {
-    const iconDefaults = {
-      path: google.maps.SymbolPath.CIRCLE,
-      fillColor: '#FFFFFF',
-      fillOpacity: 1,
-      strokeWeight: 2,
+    const defaults = {
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        fillOpacity: 1,
+        strokeWeight: 2,
+      }
     };
 
     switch (type) {
       case MarkerConfig.COIN: {
         return {
+          ...defaults,
+          label: {
+            text: 'K',
+            color: '#389722',
+          },
           icon: {
-            ...iconDefaults,
+            ...defaults.icon,
             scale: DEFAULT_MARKER_RADIUS,
             fillColor: '#FFFFFF',
-            fillOpacity: 1,
-            strokeWeight: 2,
             strokeColor: kindnessGreen,
           },
         };
       }
       case MarkerConfig.ELIJAH: {
         return {
+          ...defaults,
+          label: {
+            text: 'E',
+            color: '#fff',
+          },
           icon: {
-            ...iconDefaults,
+            ...defaults.icon,
             scale: 15,
-            strokeColor: '#336699',
+            strokeColor: '#a0a2a5',
+            fillColor: kindnessGreen,
           },
         };
       }

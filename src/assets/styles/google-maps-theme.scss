@@ -18,12 +18,13 @@
   /* marker popup window */
   .popup-content {
     font-size: 14px;
-    line-height: 24px;
+    line-height: 22px;
+    max-width: 515px;
 
     h3 {
       font-size: 24px;
       padding-top: 7px;
-      margin-bottom: 1.4rem;
+      margin-bottom: 0.75rem;
 
       small.coin-number {
         font-size: 14px;
@@ -34,6 +35,7 @@
     .description {
       font-weight: 400;
       opacity: 0.8;
+      text-indent: 1rem;
     }
 
     .image {
