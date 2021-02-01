@@ -26,8 +26,8 @@ export class QueryService {
       );
   }
 
-  getChime(id): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/chime/' + id)
+  getSelectChimes(id: string): Observable<any> {
+    return this.http.get<any>(this.apiURL + '/getSelectChimes?id=' + id)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -52,7 +52,6 @@ export class QueryService {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    window.alert(errorMessage);
     return throwError(errorMessage);
   }
 }

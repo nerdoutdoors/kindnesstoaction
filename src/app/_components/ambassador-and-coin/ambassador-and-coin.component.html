@@ -2,7 +2,7 @@
   <div [ngClass]="isOpen ? 'slide-panels--open' : 'slide-panels--close'" class="ambassador-and-coin-section__register cbp-so-side-left container">
     <mat-tab-group class="ambassador-and-coin">
       <mat-tab label="Add Coin" class="ambassador-and-coin__coin">
-        <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && sendEmail()"
+        <form name="ambassadorAndCoinForm" #f="ngForm" (ngSubmit)="f.form.valid && sendEmail()"
               class="container d-flex">
           <mat-card class="d-flex flex-column">
             <mat-card-subtitle>Register a coin to track acts of Kindness.</mat-card-subtitle>
@@ -103,24 +103,27 @@
   </div>
   <div [ngClass]="isOpen ? 'slide-panels--close' : 'slide-panels--open'" class="ambassador-and-coin-section__search cbp-so-side cbp-so-side-right d-flex align-items-center justify-content-center">
     <div class="ambassador-and-coin">
-      <mat-card class="d-flex flex-column">
-        <mat-card-subtitle>Search By Coin Id or Title</mat-card-subtitle>
-        <mat-card-content class="d-flex flex-row">
-          <div class="d-flex flex-row justify-content-between">
-            <mat-form-field appearance="outline">
-              <mat-label>Search</mat-label>
-              <input matInput  />
-            </mat-form-field>
-          </div>
-          <mat-card-actions>
-            <button *ngIf="!waiting"
-                    mat-raised-button
-                    type="submit" color="primary">
-              <span>Find</span>
-            </button>
-          </mat-card-actions>
-        </mat-card-content>
-      </mat-card>
+      <form [formGroup]="searchForm" (ngSubmit)="f.form.valid && searchCoinOrTitle()">
+        <mat-card class="d-flex flex-column">
+          <mat-card-subtitle>Search By Coin Id or Title</mat-card-subtitle>
+          <mat-card-content class="d-flex flex-row">
+            <div class="d-flex flex-row justify-content-between">
+              <mat-form-field appearance="outline">
+                <mat-label>Search</mat-label>
+                <input matInput formControlName="searchInput" />
+<!--                <mat-error *ngIf="searchInput.invalid">{{getErrorMessage()}}</mat-error>-->
+              </mat-form-field>
+            </div>
+            <mat-card-actions>
+              <button mat-raised-button type="submit" color="primary">
+                <span>Find</span>
+<!--                TODO: add logic for getting user back all chimes-->
+<!--                <span *ngIf="searchForm.get('searchInput').value">Find</span>-->
+              </button>
+            </mat-card-actions>
+          </mat-card-content>
+        </mat-card>
+      </form>
     </div>
   </div>
   <div class="ambassador-and-coin-section__toggle" (click)="hidePanels()">
