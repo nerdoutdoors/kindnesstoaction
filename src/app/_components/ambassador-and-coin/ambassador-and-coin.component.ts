@@ -5,6 +5,7 @@ import { Points } from './points';
 import LatLngBounds = google.maps.LatLngBounds;
 import { QueryService } from '../../_services/query.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {GoogleAnalyticsService} from 'ngx-google-analytics';
 
 const loader = new Loader({
   apiKey: 'AIzaSyClzIs4beJRuUasJRaY-M7notQHmre5UWQ',
@@ -31,6 +32,7 @@ export class AmbassadorAndCoinComponent implements OnInit {
   constructor(
     private points: Points,
     private queryService: QueryService,
+    private $gaService: GoogleAnalyticsService,
   ) {
     this.queryService
       .getAllChimes()
@@ -81,6 +83,8 @@ export class AmbassadorAndCoinComponent implements OnInit {
           this.coinDetails = results;
           this.loadMarkersToMap();
           this.isOpen = false;
+
+          this.$gaService.event('getAllChimes', 'search', 'View All Chimes');
         });
 
       return;
@@ -92,6 +96,8 @@ export class AmbassadorAndCoinComponent implements OnInit {
         this.coinDetails = results;
         this.loadMarkersToMap();
         this.isOpen = false;
+
+        this.$gaService.event('getSelectChimes', 'search', 'Find Specific Chimes');
       });
   }
 
