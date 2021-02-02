@@ -79,7 +79,7 @@ import {NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule} from 'ngx-goog
     FormsModule, MatTabsModule, MatButtonModule,
     TypingAnimationModule,
     FontAwesome,
-    NgxGoogleAnalyticsModule.forRoot('AIzaSyCunicxnu0e1ObDGpF_HK_5OAMjjVo1RDg'),
+    NgxGoogleAnalyticsModule.forRoot('G-CLFE1RJ365'),
     NgxGoogleAnalyticsRouterModule,
   ],
   providers: [
