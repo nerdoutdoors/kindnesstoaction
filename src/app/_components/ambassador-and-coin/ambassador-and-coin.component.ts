@@ -101,6 +101,10 @@ export class AmbassadorAndCoinComponent implements OnInit {
       });
   }
 
+  registerAmbassadorOrCoin = () => {
+    console.log('attempting to register ambassador or coin');
+  }
+
   loadMarkersToMap(): void {
     // ensure clean slate first
     this.points.clearAll(this.mapPoints);

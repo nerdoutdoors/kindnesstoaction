@@ -2,7 +2,7 @@
   <div [ngClass]="isOpen ? 'slide-panels--open' : 'slide-panels--close'" class="ambassador-and-coin-section__register cbp-so-side-left container">
     <mat-tab-group class="ambassador-and-coin">
       <mat-tab label="Add Coin" class="ambassador-and-coin__coin">
-        <form name="ambassadorAndCoinForm" #f="ngForm" (ngSubmit)="f.form.valid && sendEmail()"
+        <form name="ambassadorAndCoinForm" #f="ngForm" (ngSubmit)="f.form.valid && registerAmbassadorOrCoin()"
               class="container d-flex">
           <mat-card class="d-flex flex-column">
             <mat-card-subtitle>Register a coin to track acts of Kindness.</mat-card-subtitle>
@@ -53,7 +53,7 @@
         </form>
       </mat-tab>
       <mat-tab label="Become an Ambassador?" class="ambassador-and-coin__ambassador">
-        <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && sendEmail()"
+        <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && registerAmbassadorOrCoin()"
               class="container d-flex">
           <mat-card class="d-flex flex-column">
             <mat-card-subtitle>Share your kindness story or project idea. Request to become a Kindness Ambassador and distribute Kindness Coins.</mat-card-subtitle>
