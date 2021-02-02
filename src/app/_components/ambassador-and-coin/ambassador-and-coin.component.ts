@@ -83,6 +83,8 @@ export class AmbassadorAndCoinComponent implements OnInit {
           this.coinDetails = results;
           this.loadMarkersToMap();
           this.isOpen = false;
+
+          this.$gaService.event('getAllChimes', 'search', 'View All Chimes');
         });
 
       return;
