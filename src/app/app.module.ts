@@ -42,7 +42,8 @@ import { Points } from './_components/ambassador-and-coin/points';
 import { ScriptService } from './_services/script.service';
 import { QueryService } from './_services/query.service';
 import { TypingAnimationModule } from 'angular-typing-animation';
-import {FontAwesome} from './_shared/font-awesome.module';
+import { FontAwesome } from './_shared/font-awesome.module';
+import {NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule} from 'ngx-google-analytics';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,8 @@ import {FontAwesome} from './_shared/font-awesome.module';
     FormsModule, MatTabsModule, MatButtonModule,
     TypingAnimationModule,
     FontAwesome,
+    NgxGoogleAnalyticsModule.forRoot('AIzaSyCunicxnu0e1ObDGpF_HK_5OAMjjVo1RDg'),
+    NgxGoogleAnalyticsRouterModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
