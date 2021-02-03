@@ -43,7 +43,8 @@ import { ScriptService } from './_services/script.service';
 import { QueryService } from './_services/query.service';
 import { TypingAnimationModule } from 'angular-typing-animation';
 import { FontAwesome } from './_shared/font-awesome.module';
-import {NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule} from 'ngx-google-analytics';
+import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-google-analytics';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,7 @@ import {NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule} from 'ngx-goog
     TypingAnimationModule,
     FontAwesome,
     NgxGoogleAnalyticsModule.forRoot('G-CLFE1RJ365'),
-    NgxGoogleAnalyticsRouterModule,
+    NgxGoogleAnalyticsRouterModule, MatExpansionModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

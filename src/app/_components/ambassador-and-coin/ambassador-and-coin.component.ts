@@ -25,6 +25,7 @@ export class AmbassadorAndCoinComponent implements OnInit {
   readonly REQUIRED_FIELD_ERROR_MESSAGE = 'You must enter a value';
   readonly INVALID_EMAIL_ERROR_MESSAGE = 'Email entered is invalid';
   readonly INVALID_RECEIVER_EMAIL_ERROR_MESSAGE = 'Valid email required with receiver name';
+  readonly INVALID_PHONE_PATTERN = 'Valid phone number required';
 
   private mapPoints;
   private coinDetails: any[];
@@ -32,6 +33,8 @@ export class AmbassadorAndCoinComponent implements OnInit {
   public waiting = false;
   public isOpen = true; // default page load
   public map: google.maps.Map;
+  public coinAdditionalFieldsToggle = false;
+  public ambassadorAdditionalFieldsToggle = false;
 
   // Search
   public searchForm: FormGroup;
@@ -50,6 +53,8 @@ export class AmbassadorAndCoinComponent implements OnInit {
   public becomeAmbassadorForm: FormGroup;
   public ambassadorName: FormControl = new FormControl('', [Validators.required, Validators.minLength(TEXT_INPUT_MINLENGTH)]);
   public ambassadorEmail: FormControl = new FormControl('', [Validators.required, Validators.email]);
+  public ambassadorPhone: FormControl = new FormControl('', [Validators.pattern('[- +()0-9]+')]);
+  public ambassadorTellUs: FormControl = new FormControl('');
 
   constructor(
     private points: Points,
@@ -102,6 +107,8 @@ export class AmbassadorAndCoinComponent implements OnInit {
     this.becomeAmbassadorForm = new FormGroup({
       ambassadorName: this.ambassadorName,
       ambassadorEmail: this.ambassadorEmail,
+      ambassadorPhone: this.ambassadorPhone,
+      ambassadorTellUs: this.ambassadorTellUs,
     });
   }
 

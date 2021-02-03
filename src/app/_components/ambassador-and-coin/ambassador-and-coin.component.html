@@ -10,43 +10,51 @@
               <div class="d-flex flex-row">
                 <mat-form-field appearance="outline">
                   <mat-label>Coin ID</mat-label>
-                  <input matInput placeholder="Usually XXX-XXXX-XXX" [formControl]="coinId">
+                  <input matInput placeholder="Usually XXX-XXXX-XXX" [formControl]="coinId" />
                   <mat-error *ngIf="addCoinForm.controls['coinId'].errors?.required">{{REQUIRED_FIELD_ERROR_MESSAGE}}</mat-error>
                   <mat-error *ngIf="addCoinForm.controls['coinId'].errors?.minlength">{{generateMinimumLengthErrorMessage(10)}}</mat-error>
                 </mat-form-field>
               </div>
               <mat-form-field appearance="outline">
                 <mat-label>Title</mat-label>
-                <input matInput placeholder="Short title for kindness action" [formControl]="coinTitle" required>
+                <input matInput placeholder="Short title for kindness action" [formControl]="coinTitle" />
                 <mat-error *ngIf="addCoinForm.controls['coinTitle'].errors?.required">{{REQUIRED_FIELD_ERROR_MESSAGE}}</mat-error>
                 <mat-error *ngIf="addCoinForm.controls['coinTitle'].errors?.minlength">{{generateMinimumLengthErrorMessage()}}</mat-error>
               </mat-form-field>
-              <div class="d-flex align-center optional-divider">
-                <div></div>
-                <label>Optional</label>
-                <div></div>
-              </div>
-              <mat-form-field appearance="outline">
-                <mat-label>Giver</mat-label>
-                <input matInput placeholder="Person or group giving the coin" [formControl]="coinGiver">
-              </mat-form-field>
-              <mat-form-field appearance="outline">
-                <mat-label>Receiver</mat-label>
-                <input matInput placeholder="Person or group performing the act of kindness" [formControl]="coinReceiver" [required]="coinReceiverEmail.value !== ''">
-                <mat-error *ngIf="addCoinForm.controls['coinReceiver'].errors?.required">{{INVALID_RECEIVER_EMAIL_ERROR_MESSAGE}}</mat-error>
-              </mat-form-field>
-              <mat-form-field appearance="outline">
-                <mat-label>Receiver Email</mat-label>
-                <input matInput placeholder="Fill if you wish to receive updates for this coin" [formControl]="coinReceiverEmail">
-                <mat-error *ngIf="addCoinForm.controls['coinReceiverEmail'].errors?.email">{{INVALID_EMAIL_ERROR_MESSAGE}}</mat-error>
-              </mat-form-field>
-              <mat-form-field appearance="outline">
-                <mat-label>Description</mat-label>
-                <textarea matInput placeholder="What was the act of kindness?" [formControl]="coinEventDescription"></textarea>
-              </mat-form-field>
-              <button mat-raised-button color="primary">
-                <span>Upload Image</span>
-              </button>
+              <mat-accordion [hideToggle]="true">
+                <mat-expansion-panel (opened)="coinAdditionalFieldsToggle = true" (closed)="coinAdditionalFieldsToggle = false">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title class="mat-card-subtitle">
+                      <fa-icon *ngIf="!coinAdditionalFieldsToggle" [icon]="['fas', 'angle-right']" size="md"></fa-icon>
+                      <fa-icon *ngIf="coinAdditionalFieldsToggle" [icon]="['fas', 'angle-down']" size="md"></fa-icon>
+                      Optional Fields
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="d-flex flex-column">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Giver</mat-label>
+                      <input matInput placeholder="Person or group giving the coin" [formControl]="coinGiver" />
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Receiver</mat-label>
+                      <input matInput placeholder="Person or group performing the act of kindness" [formControl]="coinReceiver" [required]="coinReceiverEmail.value !== ''" />
+                      <mat-error *ngIf="addCoinForm.controls['coinReceiver'].errors?.required">{{INVALID_RECEIVER_EMAIL_ERROR_MESSAGE}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Receiver Email</mat-label>
+                      <input matInput placeholder="Fill if you wish to receive updates for this coin" [formControl]="coinReceiverEmail" />
+                      <mat-error *ngIf="addCoinForm.controls['coinReceiverEmail'].errors?.email">{{INVALID_EMAIL_ERROR_MESSAGE}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Description</mat-label>
+                      <textarea matInput placeholder="What was the act of kindness?" [formControl]="coinEventDescription"></textarea>
+                    </mat-form-field>
+                    <button mat-raised-button color="primary">
+                      <span>Upload Image</span>
+                    </button>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion>
             </mat-card-content>
             <mat-card-actions>
               <button *ngIf="!waiting"
@@ -66,26 +74,39 @@
               <div class="d-flex flex-row justify-content-between">
                 <mat-form-field appearance="outline">
                   <mat-label>Name</mat-label>
-                  <input matInput />
+                  <input matInput [formControl]="ambassadorName" />
+                  <mat-error *ngIf="becomeAmbassadorForm.controls['ambassadorName'].errors?.required">{{REQUIRED_FIELD_ERROR_MESSAGE}}</mat-error>
+                  <mat-error *ngIf="becomeAmbassadorForm.controls['ambassadorName'].errors?.minlength">{{generateMinimumLengthErrorMessage()}}</mat-error>
                 </mat-form-field>
               </div>
               <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
-                <input matInput placeholder="">
+                <input matInput [formControl]="ambassadorEmail" />
+                <mat-error *ngIf="becomeAmbassadorForm.controls['ambassadorEmail'].errors?.required">{{REQUIRED_FIELD_ERROR_MESSAGE}}</mat-error>
+                <mat-error *ngIf="becomeAmbassadorForm.controls['ambassadorEmail'].errors?.email">{{INVALID_EMAIL_ERROR_MESSAGE}}</mat-error>
               </mat-form-field>
-              <div class="d-flex align-center optional-divider">
-                <div></div>
-                <label>Optional</label>
-                <div></div>
-              </div>
-              <mat-form-field appearance="outline">
-                <mat-label>Phone Number</mat-label>
-                <input matInput placeholder="">
-              </mat-form-field>
-              <mat-form-field appearance="outline">
-                <mat-label>Tell us what you're thinking</mat-label>
-                <textarea matInput placeholder=""></textarea>
-              </mat-form-field>
+              <mat-accordion [hideToggle]="true">
+                <mat-expansion-panel (opened)="ambassadorAdditionalFieldsToggle = true" (closed)="ambassadorAdditionalFieldsToggle = false">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title class="mat-card-subtitle">
+                      <fa-icon *ngIf="!ambassadorAdditionalFieldsToggle" [icon]="['fas', 'angle-right']" size="md"></fa-icon>
+                      <fa-icon *ngIf="ambassadorAdditionalFieldsToggle" [icon]="['fas', 'angle-down']" size="md"></fa-icon>
+                      Optional Fields
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="d-flex flex-column">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Phone Number</mat-label>
+                      <input matInput [formControl]="ambassadorPhone" />
+                      <mat-error *ngIf="becomeAmbassadorForm.controls['ambassadorPhone'].errors?.pattern">{{INVALID_PHONE_PATTERN}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Tell us what you're thinking</mat-label>
+                      <textarea matInput [formControl]="ambassadorTellUs"></textarea>
+                    </mat-form-field>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion>
             </mat-card-content>
             <mat-card-actions>
               <button *ngIf="!waiting"
@@ -96,9 +117,6 @@
               <button *ngIf="waiting"
                       mat-raised-button disabled
                       type="submit" color="primary">
-                <span>
-                  <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                </span>
               </button>
             </mat-card-actions>
           </mat-card>
@@ -115,15 +133,12 @@
             <div class="d-flex flex-row justify-content-between">
               <mat-form-field appearance="outline">
                 <mat-label>Search</mat-label>
-                <input matInput [formControl]="searchInput" required />
-                <mat-error *ngIf="searchInput.invalid">blarg</mat-error>
+                <input matInput [formControl]="searchInput" />
               </mat-form-field>
             </div>
             <mat-card-actions>
               <button mat-raised-button type="submit" color="primary">
                 <span>Find</span>
-<!--                TODO: add logic for getting user back all chimes-->
-<!--                <span *ngIf="searchForm.get('searchInput').value">Find</span>-->
               </button>
             </mat-card-actions>
           </mat-card-content>
