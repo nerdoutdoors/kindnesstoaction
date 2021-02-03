@@ -2,7 +2,7 @@
   <div [ngClass]="isOpen ? 'slide-panels--open' : 'slide-panels--close'" class="ambassador-and-coin-section__register cbp-so-side-left container">
     <mat-tab-group class="ambassador-and-coin">
       <mat-tab label="Add Coin" class="ambassador-and-coin__coin">
-        <form name="ambassadorAndCoinForm" #f="ngForm" (ngSubmit)="f.form.valid && registerAmbassadorOrCoin()"
+        <form [formGroup]="addCoinForm" (ngSubmit)="addCoinForm.valid && registerCoin()"
               class="container d-flex">
           <mat-card class="d-flex flex-column">
             <mat-card-subtitle>Register a coin to track acts of Kindness.</mat-card-subtitle>
@@ -10,12 +10,16 @@
               <div class="d-flex flex-row">
                 <mat-form-field appearance="outline">
                   <mat-label>Coin ID</mat-label>
-                  <input matInput placeholder="Usually XXX-XXXX-XXX">
+                  <input matInput placeholder="Usually XXX-XXXX-XXX" [formControl]="coinId">
+                  <mat-error *ngIf="addCoinForm.controls['coinId'].errors?.required">{{REQUIRED_FIELD_ERROR_MESSAGE}}</mat-error>
+                  <mat-error *ngIf="addCoinForm.controls['coinId'].errors?.minlength">{{generateMinimumLengthErrorMessage(10)}}</mat-error>
                 </mat-form-field>
               </div>
               <mat-form-field appearance="outline">
                 <mat-label>Title</mat-label>
-                <input matInput placeholder="Short title for kindness action">
+                <input matInput placeholder="Short title for kindness action" [formControl]="coinTitle" required>
+                <mat-error *ngIf="addCoinForm.controls['coinTitle'].errors?.required">{{REQUIRED_FIELD_ERROR_MESSAGE}}</mat-error>
+                <mat-error *ngIf="addCoinForm.controls['coinTitle'].errors?.minlength">{{generateMinimumLengthErrorMessage()}}</mat-error>
               </mat-form-field>
               <div class="d-flex align-center optional-divider">
                 <div></div>
@@ -24,19 +28,21 @@
               </div>
               <mat-form-field appearance="outline">
                 <mat-label>Giver</mat-label>
-                <input matInput placeholder="Person or group giving the coin">
+                <input matInput placeholder="Person or group giving the coin" [formControl]="coinGiver">
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>Receiver</mat-label>
-                <input matInput placeholder="Person or group performing the act of kindness">
+                <input matInput placeholder="Person or group performing the act of kindness" [formControl]="coinReceiver" [required]="coinReceiverEmail.value !== ''">
+                <mat-error *ngIf="addCoinForm.controls['coinReceiver'].errors?.required">{{INVALID_RECEIVER_EMAIL_ERROR_MESSAGE}}</mat-error>
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>Receiver Email</mat-label>
-                <input matInput placeholder="Fill if you wish to receive updates for this coin">
+                <input matInput placeholder="Fill if you wish to receive updates for this coin" [formControl]="coinReceiverEmail">
+                <mat-error *ngIf="addCoinForm.controls['coinReceiverEmail'].errors?.email">{{INVALID_EMAIL_ERROR_MESSAGE}}</mat-error>
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>Description</mat-label>
-                <textarea matInput placeholder="What was the act of kindness?"></textarea>
+                <textarea matInput placeholder="What was the act of kindness?" [formControl]="coinEventDescription"></textarea>
               </mat-form-field>
               <button mat-raised-button color="primary">
                 <span>Upload Image</span>
@@ -53,8 +59,7 @@
         </form>
       </mat-tab>
       <mat-tab label="Become an Ambassador?" class="ambassador-and-coin__ambassador">
-        <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && registerAmbassadorOrCoin()"
-              class="container d-flex">
+        <form [formGroup]="becomeAmbassadorForm" (ngSubmit)="becomeAmbassadorForm.valid && becomeAmbassador()" class="container d-flex">
           <mat-card class="d-flex flex-column">
             <mat-card-subtitle>Share your kindness story or project idea. Request to become a Kindness Ambassador and distribute Kindness Coins.</mat-card-subtitle>
             <mat-card-content class="d-flex flex-column">
@@ -103,15 +108,15 @@
   </div>
   <div [ngClass]="isOpen ? 'slide-panels--close' : 'slide-panels--open'" class="ambassador-and-coin-section__search cbp-so-side cbp-so-side-right d-flex align-items-center justify-content-center">
     <div class="ambassador-and-coin">
-      <form [formGroup]="searchForm" (ngSubmit)="f.form.valid && searchCoinOrTitle()">
+      <form [formGroup]="searchForm" (ngSubmit)="searchForm.valid && searchCoinOrTitle()">
         <mat-card class="d-flex flex-column">
           <mat-card-subtitle>Search By Coin Id or Title</mat-card-subtitle>
           <mat-card-content class="d-flex flex-row">
             <div class="d-flex flex-row justify-content-between">
               <mat-form-field appearance="outline">
                 <mat-label>Search</mat-label>
-                <input matInput formControlName="searchInput" />
-<!--                <mat-error *ngIf="searchInput.invalid">{{getErrorMessage()}}</mat-error>-->
+                <input matInput [formControl]="searchInput" required />
+                <mat-error *ngIf="searchInput.invalid">blarg</mat-error>
               </mat-form-field>
             </div>
             <mat-card-actions>

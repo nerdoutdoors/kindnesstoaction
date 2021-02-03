@@ -4,13 +4,15 @@ import { Loader } from '@googlemaps/js-api-loader';
 import { Points } from './points';
 import LatLngBounds = google.maps.LatLngBounds;
 import { QueryService } from '../../_services/query.service';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {GoogleAnalyticsService} from 'ngx-google-analytics';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { GoogleAnalyticsService } from 'ngx-google-analytics';
 
 const loader = new Loader({
   apiKey: 'AIzaSyClzIs4beJRuUasJRaY-M7notQHmre5UWQ',
   version: 'weekly',
 });
+
+const TEXT_INPUT_MINLENGTH = 3;
 
 @Component({
   selector: 'app-ambassador-and-coin',
@@ -20,14 +22,34 @@ const loader = new Loader({
 })
 
 export class AmbassadorAndCoinComponent implements OnInit {
+  readonly REQUIRED_FIELD_ERROR_MESSAGE = 'You must enter a value';
+  readonly INVALID_EMAIL_ERROR_MESSAGE = 'Email entered is invalid';
+  readonly INVALID_RECEIVER_EMAIL_ERROR_MESSAGE = 'Valid email required with receiver name';
+
   private mapPoints;
   private coinDetails: any[];
 
   public waiting = false;
   public isOpen = true; // default page load
   public map: google.maps.Map;
+
+  // Search
   public searchForm: FormGroup;
-  public searchInput: FormControl;
+  public searchInput: FormControl = new FormControl('');
+
+  // Add Coin
+  public addCoinForm: FormGroup;
+  public coinId: FormControl = new FormControl('', [Validators.required, Validators.minLength(10)]);
+  public coinTitle: FormControl = new FormControl('', [Validators.required, Validators.minLength(TEXT_INPUT_MINLENGTH)]);
+  public coinGiver: FormControl = new FormControl('');
+  public coinReceiver: FormControl = new FormControl('');
+  public coinReceiverEmail: FormControl = new FormControl('', [Validators.email]);
+  public coinEventDescription: FormControl = new FormControl('');
+
+  // Become Ambassador
+  public becomeAmbassadorForm: FormGroup;
+  public ambassadorName: FormControl = new FormControl('', [Validators.required, Validators.minLength(TEXT_INPUT_MINLENGTH)]);
+  public ambassadorEmail: FormControl = new FormControl('', [Validators.required, Validators.email]);
 
   constructor(
     private points: Points,
@@ -63,14 +85,28 @@ export class AmbassadorAndCoinComponent implements OnInit {
         this.map.setCenter(elijahLatLng);
       });
 
+    // Set up form groups
     this.searchForm = new FormGroup({
-      searchInput: new FormControl(
-        '',
-        [
-          Validators.required,
-          Validators.minLength(10)
-        ]),
+      searchInput: this.searchInput,
     });
+
+    this.addCoinForm = new FormGroup({
+      coinId: this.coinId,
+      coinTitle: this.coinTitle,
+      coinGiver: this.coinGiver,
+      coinReceiver: this.coinReceiver,
+      coinReceiverEmail: this.coinReceiverEmail,
+      coinEventDescription: this.coinEventDescription,
+    });
+
+    this.becomeAmbassadorForm = new FormGroup({
+      ambassadorName: this.ambassadorName,
+      ambassadorEmail: this.ambassadorEmail,
+    });
+  }
+
+  generateMinimumLengthErrorMessage = (length: number = TEXT_INPUT_MINLENGTH) => {
+    return `Minimum length of ${length} is required`;
   }
 
   searchCoinOrTitle = () => {
@@ -101,8 +137,12 @@ export class AmbassadorAndCoinComponent implements OnInit {
       });
   }
 
-  registerAmbassadorOrCoin = () => {
-    console.log('attempting to register ambassador or coin');
+  registerCoin = () => {
+    console.log('attempting to register coin');
+  }
+
+  becomeAmbassador = () => {
+    console.log('attempting to become ambassador');
   }
 
   loadMarkersToMap(): void {
@@ -126,15 +166,5 @@ export class AmbassadorAndCoinComponent implements OnInit {
 
   hidePanels() {
     this.isOpen = !this.isOpen;
-  }
-
-  getErrorMessage() {
-    console.log('getErrorMessages')
-    console.log('here!', this.searchForm.controls)
-    if (this.searchInput.hasError('required')) {
-      return 'You must enter a value';
-    }
-
-    return this.searchInput.hasError('email') ? 'Not a valid email' : '';
   }
 }
