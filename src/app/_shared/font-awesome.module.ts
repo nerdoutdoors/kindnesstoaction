@@ -26,6 +26,7 @@ import {
   faAngleRight,
   faAngleLeft,
   faCaretDown,
+  faCaretUp,
   faCamera,
   faGlobeAmericas,
 } from '@fortawesome/free-solid-svg-icons';
@@ -76,6 +77,7 @@ export class FontAwesome {
       faEnvelopeOpen,
       faLifeRing,
       faCaretDown,
+      faCaretUp,
       faCamera,
       faQuestionCircle,
       faBell,
